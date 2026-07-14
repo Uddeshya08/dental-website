@@ -16,7 +16,7 @@ export default function Hero({
   eyebrow = 'Accepting new patients',
   title = 'Dentistry that feels ',
   emphasis = 'calm',
-  body = 'Modern care, gentle hands, and a team that explains everything. Dentheal makes every visit feel less like a chore and more like a reset.',
+  body = 'Modern care, gentle hands, and a team that explains everything. Dentheal make every visit feel less like a chore and more like a reset.',
   ctaPrimary = 'Book your visit',
   ctaSecondary = 'Explore services',
   image = IMG.smile,
