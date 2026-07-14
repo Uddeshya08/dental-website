@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="#0f6fd1"/><g fill="#fff"><circle cx="150" cy="120" r="45"/><rect x="105" y="180" width="90" height="70" rx="20"/></g></svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0}
+  :root{
+    --background:210 40% 99%; --foreground:214 32% 14%;
+    --surface:0 0% 100%; --surface-2:210 40% 98%;
+    --muted:214 15% 46%; --muted-bg:210 38% 96%;
+    --primary:212 92% 47%; --primary-foreground:0 0% 100%;
+    --accent:190 88% 40%; --accent-foreground:0 0% 100%;
+    --border:214 28% 89%; --success:150 62% 40%; --radius:22px;
+    --ink:214 45% 12%; --ink-foreground:0 0% 100%;
+  }
+  [data-theme="mint"]{
+    --background:158 34% 98%; --foreground:172 30% 13%;
+    --surface:0 0% 100%; --surface-2:158 34% 97%;
+    --muted:168 13% 42%; --muted-bg:158 32% 95%;
+    --primary:162 58% 35%; --primary-foreground:0 0% 100%;
+    --accent:178 62% 36%; --accent-foreground:0 0% 100%;
+    --border:158 24% 87%; --success:150 62% 38%; --ink:172 36% 10%;
+  }
+  [data-theme="neutral"]{
+    --background:36 30% 98%; --foreground:28 20% 15%;
+    --surface:36 44% 99%; --surface-2:36 30% 96%;
+    --muted:30 10% 44%; --muted-bg:36 26% 94%;
+    --primary:20 32% 33%; --primary-foreground:40 40% 97%;
+    --accent:150 20% 40%; --accent-foreground:0 0% 100%;
+    --border:34 22% 87%; --success:150 40% 40%; --ink:26 30% 12%;
+  }
+  [data-mode="dark"]{
+    --background:220 30% 7%; --foreground:210 22% 92%;
+    --surface:220 22% 11%; --surface-2:220 22% 9%;
+    --muted:215 14% 63%; --muted-bg:220 20% 15%;
+    --border:214 16% 22%; --ink:220 26% 13%;
+  }
+  @keyframes dz-fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes dz-float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-24px)}}
+  @keyframes dz-float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-24px,18px)}}
+  @keyframes dz-marquee{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  [data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.16,.8,.3,1),transform .75s cubic-bezier(.16,.8,.3,1)}
+  [data-reveal][data-shown="1"]{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important}[data-reveal]{opacity:1 !important;transform:none !important;transition:none !important}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" data-mode="{{ mode }}" style="min-height:100vh;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:hsl(var(--foreground));background:radial-gradient(1100px 620px at 12% -8%, hsl(var(--primary) / 0.12), transparent 60%), radial-gradient(1000px 700px at 104% 2%, hsl(var(--accent) / 0.12), transparent 55%), hsl(var(--background));position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s">
+
+  <div aria-hidden="true" style="position:fixed;top:-120px;left:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, hsl(var(--primary) / 0.18), transparent 68%);filter:blur(20px);animation:dz-float 18s ease-in-out infinite;pointer-events:none;z-index:0"></div>
+  <div aria-hidden="true" style="position:fixed;bottom:-160px;right:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle at 60% 40%, hsl(var(--accent) / 0.16), transparent 68%);filter:blur(20px);animation:dz-float2 22s ease-in-out infinite;pointer-events:none;z-index:0"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header style="position:sticky;top:0;z-index:50;padding:14px 20px;display:flex;justify-content:center">
+    <div style="width:100%;max-width:1180px;display:flex;align-items:center;gap:18px;padding:10px 14px 10px 18px;border-radius:999px;background:hsl(var(--surface) / 0.66);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 10px 40px -14px hsl(var(--primary) / 0.28)">
+      <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:0">
+        <span style="width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg, hsl(var(--primary)), hsl(var(--accent)));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -6px hsl(var(--primary) / 0.7)">
+          <span style="width:13px;height:13px;border-radius:4px 8px 4px 8px;background:hsl(var(--primary-foreground))"></span>
+        </span>
+        <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;letter-spacing:-.01em;color:hsl(var(--foreground))">{{ brand }}</span>
+      </button>
+
+      <nav style="display:flex;gap:4px;margin-left:8px">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="4">
+          <button onClick="{{ item.onClick }}" style="border:none;background:{{ item.bg }};color:{{ item.color }};font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14px;padding:9px 15px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s" style-hover="background:hsl(var(--muted-bg))">{{ item.label }}</button>
+        </sc-for>
+      </nav>
+
+      <div style="flex:1"></div>
+
+      <div style="display:flex;align-items:center;gap:6px;padding:4px;border-radius:999px;background:hsl(var(--muted-bg) / 0.7);border:1px solid hsl(var(--border) / 0.6)">
+        <sc-for list="{{ themeSwatches }}" as="sw" hint-placeholder-count="3">
+          <button onClick="{{ sw.onClick }}" title="{{ sw.name }}" style="width:24px;height:24px;border-radius:50%;cursor:pointer;background:{{ sw.dot }};border:2px solid {{ sw.ring }};padding:0;transition:transform .15s" style-hover="transform:scale(1.12)"></button>
+        </sc-for>
+        <span style="width:1px;height:18px;background:hsl(var(--border))"></span>
+        <button onClick="{{ toggleMode }}" title="Toggle light / dark" style="width:28px;height:24px;border-radius:999px;border:none;cursor:pointer;background:hsl(var(--surface));display:flex;align-items:center;justify-content:center;color:hsl(var(--foreground));font-size:13px">{{ modeIcon }}</button>
+      </div>
+
+      <button onClick="{{ goBook }}" style="border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px;cursor:pointer;box-shadow:0 10px 26px -10px hsl(var(--primary) / 0.8);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 14px 30px -10px hsl(var(--primary) / 0.9)">Book Appointment</button>
+    </div>
+  </header>
+
+  <!-- ============ PAGE BODY ============ -->
+  <main key="{{ page }}" style="position:relative;z-index:1;animation:dz-fade .5s ease both">
+
+    <!-- ========== HOME ========== -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <!-- HERO -->
+      <section data-reveal style="max-width:1180px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center">
+        <div>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:hsl(var(--primary));background:hsl(var(--primary) / 0.1);padding:7px 14px;border-radius:999px;border:1px solid hsl(var(--primary) / 0.2)"><span style="width:7px;height:7px;border-radius:50%;background:hsl(var(--success))"></span>Accepting new patients</span>
+          <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:60px;line-height:1.04;letter-spacing:-.02em;margin:20px 0 0;text-wrap:balance">Dentistry that feels <span style="font-style:italic;color:hsl(var(--primary))">calm</span>, clear &amp; genuinely kind.</h1>
+          <p style="font-size:18px;line-height:1.6;color:hsl(var(--muted));margin:22px 0 0;max-width:30em">Modern care, gentle hands, and a team that explains everything. Dentheal makes every visit feel less like a chore and more like a reset.</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap">
+            <button onClick="{{ goBook }}" style="border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:inherit;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px;cursor:pointer;box-shadow:0 14px 30px -12px hsl(var(--primary) / 0.85);transition:transform .2s" style-hover="transform:translateY(-2px)">Book your visit</button>
+            <button onClick="{{ goServices }}" style="border:1px solid hsl(var(--border));background:hsl(var(--surface) / 0.6);backdrop-filter:blur(10px);color:hsl(var(--foreground));font-family:inherit;font-weight:600;font-size:16px;padding:16px 26px;border-radius:999px;cursor:pointer;transition:transform .2s,background .2s" style-hover="transform:translateY(-2px)">Explore services</button>
+          </div>
+          <div style="display:flex;gap:26px;margin-top:40px;flex-wrap:wrap">
+            <sc-for list="{{ heroStats }}" as="s" hint-placeholder-count="3">
+              <div>
+                <div style="font-family:'Spectral',serif;font-weight:600;font-size:30px;color:hsl(var(--foreground))">{{ s.value }}</div>
+                <div style="font-size:13px;color:hsl(var(--muted));font-weight:500">{{ s.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="position:relative">
+          <div style="position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;border:1px solid hsl(var(--border) / 0.7);box-shadow:0 30px 70px -30px hsl(var(--primary) / 0.4)">
+            <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=900&q=70" alt="Patient with a bright, healthy smile" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          </div>
+          <div style="position:absolute;bottom:-22px;left:-22px;padding:16px 18px;border-radius:18px;background:hsl(var(--surface) / 0.75);backdrop-filter:blur(18px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 18px 40px -18px hsl(var(--primary) / 0.4);display:flex;align-items:center;gap:12px">
+            <span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(140deg,hsl(var(--primary)),hsl(var(--accent)));border:2px solid hsl(var(--surface))"></span>
+            <div>
+              <div style="font-weight:700;font-size:15px">4.9 ★ · 1,200+ reviews</div>
+              <div style="font-size:12px;color:hsl(var(--muted))">Loved by our community</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST BAR -->
+      <section data-reveal style="max-width:1180px;margin:24px auto 0;padding:0 24px">
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;padding:18px 24px;border-radius:var(--radius);background:hsl(var(--surface) / 0.6);backdrop-filter:blur(16px);border:1px solid hsl(var(--border) / 0.7)">
+          <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:30px;height:30px;border-radius:9px;background:hsl(var(--primary) / 0.12);color:hsl(var(--primary));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px">{{ t.mark }}</span>
+              <span style="font-weight:600;font-size:14px;color:hsl(var(--foreground))">{{ t.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- POPULAR SERVICES -->
+      <section data-reveal style="width:100%;margin:64px 0 0;padding:66px 24px;background:linear-gradient(180deg, hsl(var(--accent) / 0.13), hsl(var(--accent) / 0.05))">
+        <div style="max-width:1180px;margin:0 auto">
+          <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:44px;line-height:1.12;letter-spacing:-.02em;text-align:center;margin:0 0 42px;text-wrap:balance">The Most Popular <span style="font-style:italic;color:hsl(var(--primary))">Service</span> We Provide</h2>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+            <sc-for list="{{ popular }}" as="p" hint-placeholder-count="4">
+              <button onClick="{{ p.onClick }}" style="position:relative;aspect-ratio:3/4;border-radius:22px;overflow:hidden;border:none;padding:0;cursor:pointer;font-family:inherit;box-shadow:0 18px 44px -22px hsl(var(--primary) / 0.5);transition:transform .3s" style-hover="transform:translateY(-6px)">
+                <img src="{{ p.image }}" alt="{{ p.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg, hsl(0 0% 0% / 0.5) 0%, transparent 32%, transparent 50%, hsl(0 0% 0% / 0.8) 100%)"></div>
+                <div style="position:absolute;top:16px;left:18px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+                  <span style="font-family:'Spectral',serif;font-weight:600;font-size:19px;line-height:1.2;color:#fff;text-align:left">{{ p.name }}</span>
+                  <span style="flex:none;width:30px;height:30px;border-radius:50%;background:hsl(0 0% 100% / 0.22);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px">↗</span>
+                </div>
+                <div style="position:absolute;bottom:16px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:13px;font-weight:600;color:#fff">{{ p.price }}</span>
+                  <span style="font-size:12px;font-weight:600;color:hsl(0 0% 100% / 0.82)">{{ p.category }}</span>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT (numbered) -->
+      <section data-reveal style="width:100%;margin:0;padding:84px 24px;background:radial-gradient(900px 520px at 28% 12%, hsl(var(--primary) / 0.78), transparent 72%), hsl(var(--primary));color:hsl(var(--primary-foreground))">
+        <div style="max-width:1180px;margin:0 auto">
+          <div style="display:grid;grid-template-columns:.5fr 1.5fr;gap:32px;align-items:start">
+            <div style="font-size:14px;font-weight:600;opacity:.85">About {{ brand }}</div>
+            <div>
+              <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.02em;margin:0;text-wrap:balance">From Routine Checkups To Full Smile Makeovers — We're With You <span style="font-style:italic">Every Step.</span></h2>
+              <p style="font-size:16px;line-height:1.65;opacity:.82;max-width:34em;margin:22px 0 0">Our practice has been recently refurbished with cutting-edge equipment in a refreshed and contemporary space. The practice has been transformed but retains its friendly, family-focused and professional service.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px;border-top:1px solid hsl(var(--primary-foreground) / 0.28)">
+            <sc-for list="{{ aboutCols }}" as="c" hint-placeholder-count="3">
+              <div style="padding:34px 26px;border-left:1px solid hsl(var(--primary-foreground) / 0.16);display:flex;flex-direction:column">
+                <div style="display:flex;gap:20px;align-items:flex-start">
+                  <span style="font-family:'Spectral',serif;font-size:22px;opacity:.9">{{ c.n }}</span>
+                  <div>
+                    <div style="font-family:'Spectral',serif;font-weight:600;font-size:22px;margin-bottom:12px">{{ c.title }}</div>
+                    <div style="width:38px;height:1px;background:hsl(var(--primary-foreground) / 0.45);margin-bottom:14px"></div>
+                    <div style="font-size:13.5px;line-height:1.6;opacity:.8">{{ c.body }}</div>
+                  </div>
+                </div>
+                <div style="font-size:46px;line-height:1;margin-top:26px;opacity:.95">{{ c.icon }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY -->
+      <section data-reveal style="width:100%;margin:0;padding:84px 24px;background:hsl(var(--ink));color:hsl(var(--ink-foreground))">
+        <div style="max-width:1180px;margin:0 auto">
+          <div style="display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:start">
+            <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:44px;line-height:1.1;letter-spacing:-.02em;margin:0;text-wrap:balance">From Consultation to Care — A Simpler Smile Journey.</h2>
+            <p style="font-size:14.5px;line-height:1.65;opacity:.7;margin:8px 0 0">From your first visit to your final treatment, we make every step easy, comfortable, and focused on you. Experience expert dental care designed to fit your needs and lifestyle.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:68px">
+            <sc-for list="{{ journey }}" as="j" hint-placeholder-count="4">
+              <div style="position:relative">
+                <div style="display:flex;align-items:center;margin-bottom:22px">
+                  <span style="flex:none;width:52px;height:52px;border-radius:50%;border:1px solid hsl(var(--ink-foreground) / 0.45);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-size:18px">{{ j.n }}</span>
+                  <span style="flex:1;height:1px;background:hsl(var(--ink-foreground) / 0.22)"></span>
+                </div>
+                <div style="font-family:'Spectral',serif;font-weight:600;font-size:20px;margin-bottom:10px">{{ j.title }}</div>
+                <div style="font-size:13.5px;line-height:1.6;opacity:.68">{{ j.body }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BEFORE / AFTER COMPARISON ===== -->
+      <section data-reveal style="max-width:1180px;margin:0 auto;padding:90px 24px 0">
+        <div style="text-align:center;max-width:640px;margin:0 auto 34px">
+          <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:hsl(var(--accent))">See the difference</div>
+          <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:42px;letter-spacing:-.02em;margin:8px 0 12px;text-wrap:balance">Just a step away from a perfect smile</h2>
+          <p style="font-size:17px;color:hsl(var(--muted));line-height:1.6">Drag the handle to reveal the transformation. Real results from our whitening &amp; cosmetic care.</p>
+        </div>
+        <div ref="{{ cmpRef }}" style="position:relative;max-width:900px;margin:0 auto;aspect-ratio:4/3;border-radius:28px;overflow:hidden;border:1px solid hsl(var(--border) / 0.7);box-shadow:0 34px 80px -34px hsl(var(--primary) / 0.5);user-select:none">
+          <!-- AFTER (full, bright) -->
+          <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=1200&q=75" alt="After treatment" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;filter:brightness(1.07) saturate(1.06) contrast(1.03)"/>
+          <span style="position:absolute;top:16px;right:16px;z-index:3;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:hsl(var(--primary-foreground));background:hsl(var(--primary) / 0.9);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)">After</span>
+          <!-- BEFORE (clipped, dull) -->
+          <div style="position:absolute;inset:0;clip-path:inset(0 {{ cmpRight }} 0 0)">
+            <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=1200&q=75" alt="Before treatment" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;filter:sepia(.5) saturate(.82) brightness(.84) contrast(.96)"/>
+            <span style="position:absolute;top:16px;left:16px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:hsl(var(--foreground));background:hsl(var(--surface) / 0.85);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)">Before</span>
+          </div>
+          <!-- divider + knob -->
+          <div style="position:absolute;top:0;bottom:0;left:{{ cmpPos }};width:3px;background:hsl(var(--primary-foreground));transform:translateX(-50%);pointer-events:none;z-index:4;box-shadow:0 0 0 1px hsl(var(--primary) / 0.35)">
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:hsl(var(--surface));border:2px solid hsl(var(--primary));display:flex;align-items:center;justify-content:center;color:hsl(var(--primary));font-size:18px;font-weight:800;box-shadow:0 10px 24px -8px hsl(var(--primary) / 0.75)">⇆</div>
+          </div>
+          <input type="range" min="0" max="100" value="{{ cmp }}" onInput="{{ onCmp }}" aria-label="Reveal whitening result" style="position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;z-index:5"/>
+        </div>
+        <div style="text-align:center;margin-top:26px">
+          <button onClick="{{ goBook }}" style="border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:inherit;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px;cursor:pointer;box-shadow:0 16px 32px -12px hsl(var(--primary) / 0.85);transition:transform .2s" style-hover="transform:translateY(-2px)">Start your transformation</button>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section data-reveal style="max-width:1180px;margin:0 auto;padding:96px 24px 0">
+        <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-.02em;text-align:center;margin:0 0 34px;text-wrap:balance">The Help You Need When You <span style="font-style:italic;color:hsl(var(--primary))">Need It</span></h2>
+        <div style="border-radius:28px;padding:26px;background:hsl(var(--surface-2) / 0.85);backdrop-filter:blur(16px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 24px 60px -30px hsl(var(--primary) / 0.35)">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ teamTabs }}" as="t" hint-placeholder-count="3">
+                <button onClick="{{ t.onClick }}" style="border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }};font-family:inherit;font-weight:600;font-size:14px;padding:10px 20px;border-radius:999px;cursor:pointer;transition:all .2s">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:10px">
+              <span style="width:40px;height:40px;border-radius:50%;border:1px solid hsl(var(--border));display:flex;align-items:center;justify-content:center;color:hsl(var(--muted))">←</span>
+              <span style="width:40px;height:40px;border-radius:50%;background:hsl(var(--foreground));color:hsl(var(--background));display:flex;align-items:center;justify-content:center">→</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+            <sc-for list="{{ doctors }}" as="d" hint-placeholder-count="4">
+              <div style="background:hsl(var(--surface));border:1px solid hsl(var(--border) / 0.7);border-radius:20px;padding:22px;display:flex;flex-direction:column">
+                <div style="font-family:'Spectral',serif;font-weight:600;font-size:18px">{{ d.name }}</div>
+                <div style="font-size:13px;color:hsl(var(--muted));margin-top:2px">{{ d.role }}</div>
+                <div style="margin:18px auto;width:118px;height:118px;border-radius:50%;overflow:hidden;border:1px solid hsl(var(--border))">
+                  <img src="{{ d.img }}" alt="{{ d.name }}" style="width:100%;height:100%;object-fit:cover"/>
+                </div>
+                <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:8px">
+                  <div>
+                    <div style="font-size:12px;color:hsl(var(--muted))">Head of Department</div>
+                    <div style="font-size:13px;font-weight:600;margin-top:4px">{{ d.rating }} <span style="color:hsl(var(--primary))">★★★★★</span></div>
+                  </div>
+                  <span style="flex:none;width:34px;height:34px;border-radius:50%;border:1px solid hsl(var(--border));display:flex;align-items:center;justify-content:center;color:hsl(var(--foreground))">↗</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section data-reveal style="max-width:1180px;margin:0 auto;padding:90px 24px 0">
+        <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:38px;letter-spacing:-.02em;margin:0 0 30px;text-align:center">Kind words from real patients</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+          <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+            <div style="padding:28px;border-radius:var(--radius);background:hsl(var(--surface) / 0.62);backdrop-filter:blur(16px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 12px 40px -22px hsl(var(--primary) / 0.3)">
+              <div style="color:hsl(var(--primary));font-size:15px;letter-spacing:2px">★★★★★</div>
+              <p style="font-family:'Spectral',serif;font-size:18px;line-height:1.5;color:hsl(var(--foreground));margin:14px 0 20px">"{{ t.quote }}"</p>
+              <div style="display:flex;align-items:center;gap:12px">
+                <img src="{{ t.avatar }}" alt="{{ t.name }}" style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid hsl(var(--surface))"/>
+                <div>
+                  <div style="font-weight:700;font-size:14px">{{ t.name }}</div>
+                  <div style="font-size:12.5px;color:hsl(var(--muted))">{{ t.meta }}</div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- HOURS -->
+      <section data-reveal style="width:100%;margin:96px 0 0;padding:0 24px">
+        <div style="max-width:1180px;margin:0 auto">
+          <div style="position:relative;border-radius:30px;overflow:hidden;background:radial-gradient(760px 460px at 50% 10%, hsl(var(--primary) / 0.92), hsl(var(--primary)));height:clamp(440px,52vw,540px)">
+            <!-- eyebrow -->
+            <div style="position:absolute;top:30px;left:0;right:0;z-index:3;text-align:center;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:hsl(var(--primary-foreground) / 0.82)">Visit Us · We're open all week</div>
+            <!-- scrolling marquee (behind the cutout) -->
+            <div style="position:absolute;top:0;bottom:0;left:0;right:0;z-index:0;display:flex;align-items:center;overflow:hidden;pointer-events:none">
+              <div style="display:flex;flex:none;width:max-content;white-space:nowrap;animation:dz-marquee 26s linear infinite;will-change:transform">
+                <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(76px,13vw,176px);line-height:1;letter-spacing:-.03em;color:hsl(var(--primary-foreground) / 0.92);padding-right:60px">We Are Open&nbsp;&nbsp;•&nbsp;&nbsp;We Are Open&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+                <span aria-hidden="true" style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(76px,13vw,176px);line-height:1;letter-spacing:-.03em;color:hsl(var(--primary-foreground) / 0.92);padding-right:60px">We Are Open&nbsp;&nbsp;•&nbsp;&nbsp;We Are Open&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+              </div>
+            </div>
+            <!-- PNG cutout in front of the text -->
+            <img src="assets/open-cutout.png" alt="Smiling patient" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:clamp(400px,50vw,500px);width:auto;z-index:2;pointer-events:none;filter:drop-shadow(0 24px 40px hsl(0 0% 0% / 0.28))"/>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:920px;margin:-46px auto 0;position:relative;z-index:2">
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+              <div style="text-align:center;padding:22px;border-radius:18px;background:hsl(var(--surface) / 0.82);backdrop-filter:blur(16px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 16px 40px -20px hsl(var(--primary) / 0.45)">
+                <div style="font-weight:700;font-size:16px;color:hsl(var(--foreground))">{{ h.days }}</div>
+                <div style="font-size:14px;color:hsl(var(--muted));margin-top:6px">{{ h.time }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOG TEASER -->
+      <section data-reveal style="max-width:1180px;margin:0 auto;padding:90px 24px 0">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px">
+          <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:38px;letter-spacing:-.02em;margin:0">From the journal</h2>
+          <button onClick="{{ goBlog }}" style="border:1px solid hsl(var(--border));background:hsl(var(--surface) / 0.6);color:hsl(var(--foreground));font-family:inherit;font-weight:600;font-size:14px;padding:11px 18px;border-radius:999px;cursor:pointer" style-hover="background:hsl(var(--muted-bg))">Read the blog →</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+          <sc-for list="{{ postsTease }}" as="p" hint-placeholder-count="3">
+            <button onClick="{{ goBlog }}" style="text-align:left;cursor:pointer;padding:0;border:none;background:none;font-family:inherit">
+              <div style="aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:1px solid hsl(var(--border) / 0.7)">
+                <img src="{{ p.img }}" alt="{{ p.title }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s" style-hover="transform:scale(1.05)"/>
+              </div>
+              <div style="margin-top:14px;font-size:12px;font-weight:700;color:hsl(var(--accent));text-transform:uppercase;letter-spacing:.05em">{{ p.tag }}</div>
+              <div style="margin-top:6px;font-family:'Spectral',serif;font-weight:600;font-size:19px;line-height:1.3;color:hsl(var(--foreground))">{{ p.title }}</div>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- CTA BAND -->
+      <section data-reveal style="max-width:1180px;margin:88px auto 0;padding:0 24px">
+        <div style="position:relative;overflow:hidden;border-radius:30px;padding:56px 48px;background:linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));color:hsl(var(--primary-foreground));display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:0 30px 70px -30px hsl(var(--primary) / 0.7)">
+          <div style="position:absolute;top:-60px;right:-40px;width:260px;height:260px;border-radius:50%;background:hsl(0 0% 100% / 0.12)"></div>
+          <div style="position:relative">
+            <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:38px;letter-spacing:-.02em;margin:0;max-width:16em">Ready for a dentist you'll actually look forward to?</h2>
+            <p style="margin:12px 0 0;font-size:17px;opacity:.9">Same-week appointments available. It only takes a minute.</p>
+          </div>
+          <button onClick="{{ goBook }}" style="position:relative;border:none;background:hsl(var(--primary-foreground));color:hsl(var(--primary));font-family:inherit;font-weight:800;font-size:16px;padding:17px 30px;border-radius:999px;cursor:pointer;box-shadow:0 16px 30px -14px rgba(0,0,0,.4);transition:transform .2s" style-hover="transform:translateY(-2px)">Book Appointment</button>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ========== SERVICES ========== -->
+    <sc-if value="{{ isServices }}">
+    <section style="max-width:1180px;margin:0 auto;padding:48px 24px 0">
+      <div data-reveal style="text-align:center;max-width:640px;margin:0 auto">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:hsl(var(--accent))">Services</div>
+        <h1 style="font-family:'Spectral',serif;font-weight:600;font-size:48px;letter-spacing:-.02em;margin:10px 0 14px">Everything your smile needs, in one place</h1>
+        <p style="font-size:17px;color:hsl(var(--muted));line-height:1.6">From routine cleanings to full smile makeovers — reachable in two clicks. Filter to find your care.</p>
+      </div>
+
+      <div data-reveal style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:34px 0 30px">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.onClick }}" style="border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};font-family:inherit;font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px;cursor:pointer;transition:all .2s">{{ f.label }}</button>
+        </sc-for>
+      </div>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:20px">
+        <sc-for list="{{ visibleServices }}" as="s" hint-placeholder-count="6">
+          <div style="display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius);background:hsl(var(--surface) / 0.62);backdrop-filter:blur(16px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 12px 40px -22px hsl(var(--primary) / 0.3);transition:transform .25s" style-hover="transform:translateY(-5px)">
+            <div style="position:relative;height:172px">
+              <img src="{{ s.image }}" alt="{{ s.name }}" style="width:100%;height:100%;object-fit:cover;display:block;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)"/>
+              <span style="position:absolute;left:24px;bottom:-24px;width:54px;height:54px;border-radius:17px;background:hsl(var(--surface) / 0.82);backdrop-filter:blur(12px);border:1px solid hsl(var(--border));display:flex;align-items:center;justify-content:center;color:hsl(var(--primary));font-size:23px;box-shadow:0 12px 26px -10px hsl(var(--primary) / 0.6)">{{ s.icon }}</span>
+              <span style="position:absolute;top:14px;right:14px;font-size:11.5px;font-weight:700;color:hsl(var(--primary-foreground));background:hsl(var(--accent) / 0.92);padding:5px 11px;border-radius:999px;backdrop-filter:blur(6px)">{{ s.category }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;flex:1;padding:34px 26px 26px">
+              <div style="font-family:'Spectral',serif;font-weight:600;font-size:22px">{{ s.name }}</div>
+              <div style="margin-top:8px;font-size:14.5px;line-height:1.55;color:hsl(var(--muted));flex:1">{{ s.blurb }}</div>
+              <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:7px">
+                <sc-for list="{{ s.points }}" as="pt" hint-placeholder-count="3">
+                  <li style="display:flex;gap:9px;align-items:center;font-size:13.5px;color:hsl(var(--foreground))"><span style="flex:none;width:16px;height:16px;border-radius:50%;background:hsl(var(--success) / 0.16);color:hsl(var(--success));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">✓</span>{{ pt }}</li>
+                </sc-for>
+              </ul>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:18px;border-top:1px solid hsl(var(--border) / 0.7)">
+                <span style="font-size:13px;color:hsl(var(--muted))">{{ s.price }}</span>
+                <button onClick="{{ s.onBook }}" style="border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:inherit;font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:999px;cursor:pointer" style-hover="opacity:.9">Book</button>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- ========== ABOUT ========== -->
+    <sc-if value="{{ isAbout }}">
+    <div style="max-width:1180px;margin:0 auto;padding:48px 24px 0">
+      <div data-reveal style="display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center">
+        <div>
+          <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:hsl(var(--accent))">About Dentheal</div>
+          <h1 style="font-family:'Spectral',serif;font-weight:600;font-size:50px;line-height:1.05;letter-spacing:-.02em;margin:12px 0 20px">We started Dentheal to make going to the dentist feel human again.</h1>
+          <p style="font-size:17px;line-height:1.65;color:hsl(var(--muted))">No rushing, no jargon, no upsell. Just a warm room, honest advice, and a team that treats you like a person — not a set of teeth. Over a decade later, that's still the whole philosophy.</p>
+        </div>
+        <div style="aspect-ratio:4/5;border-radius:26px;overflow:hidden;border:1px solid hsl(var(--border) / 0.7);box-shadow:0 30px 60px -30px hsl(var(--primary) / 0.35)">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=70" alt="Dentheal founder" style="width:100%;height:100%;object-fit:cover;display:block"/>
+        </div>
+      </div>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px">
+        <sc-for list="{{ aboutStats }}" as="s" hint-placeholder-count="4">
+          <div style="padding:26px;border-radius:var(--radius);background:hsl(var(--surface) / 0.6);backdrop-filter:blur(14px);border:1px solid hsl(var(--border) / 0.7);text-align:center">
+            <div style="font-family:'Spectral',serif;font-weight:600;font-size:38px;color:hsl(var(--primary))">{{ s.value }}</div>
+            <div style="font-size:13.5px;color:hsl(var(--muted));font-weight:500;margin-top:4px">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 data-reveal style="font-family:'Spectral',serif;font-weight:600;font-size:34px;letter-spacing:-.02em;margin:70px 0 26px;text-align:center">What we stand for</h2>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+          <div style="padding:28px;border-radius:var(--radius);background:hsl(var(--surface) / 0.6);backdrop-filter:blur(14px);border:1px solid hsl(var(--border) / 0.7)">
+            <span style="display:flex;width:44px;height:44px;border-radius:13px;align-items:center;justify-content:center;background:hsl(var(--primary) / 0.12);color:hsl(var(--primary));font-weight:800;font-size:18px">{{ v.mark }}</span>
+            <div style="margin-top:16px;font-family:'Spectral',serif;font-weight:600;font-size:20px">{{ v.title }}</div>
+            <div style="margin-top:8px;font-size:14.5px;line-height:1.55;color:hsl(var(--muted))">{{ v.body }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 data-reveal style="font-family:'Spectral',serif;font-weight:600;font-size:34px;letter-spacing:-.02em;margin:70px 0 26px;text-align:center">Meet the team</h2>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-bottom:12px">
+        <sc-for list="{{ team }}" as="m" hint-placeholder-count="4">
+          <div style="text-align:center">
+            <div style="aspect-ratio:1/1;border-radius:20px;overflow:hidden;border:1px solid hsl(var(--border) / 0.7);margin-bottom:12px">
+              <img src="{{ m.img }}" alt="{{ m.name }}" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div style="font-family:'Spectral',serif;font-weight:600;font-size:18px">{{ m.name }}</div>
+            <div style="font-size:13px;color:hsl(var(--muted))">{{ m.role }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ========== BLOG ========== -->
+    <sc-if value="{{ isBlog }}">
+    <section style="max-width:1180px;margin:0 auto;padding:48px 24px 0">
+      <div data-reveal style="text-align:center;max-width:600px;margin:0 auto 36px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:hsl(var(--accent))">The Journal</div>
+        <h1 style="font-family:'Spectral',serif;font-weight:600;font-size:48px;letter-spacing:-.02em;margin:10px 0 12px">Notes on healthier, happier smiles</h1>
+        <p style="font-size:17px;color:hsl(var(--muted))">Practical advice from our dentists — no fear-mongering, just clarity.</p>
+      </div>
+
+      <sc-for list="{{ featuredPost }}" as="p" hint-placeholder-count="1">
+        <div data-reveal style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;border-radius:26px;overflow:hidden;border:1px solid hsl(var(--border) / 0.7);background:hsl(var(--surface) / 0.6);backdrop-filter:blur(14px);margin-bottom:26px">
+          <div style="min-height:300px">
+            <img src="{{ p.img }}" alt="{{ p.title }}" style="width:100%;height:100%;min-height:300px;object-fit:cover;display:block"/>
+          </div>
+          <div style="padding:38px;display:flex;flex-direction:column;justify-content:center">
+            <span style="font-size:12px;font-weight:700;color:hsl(var(--accent));text-transform:uppercase;letter-spacing:.05em">Featured · {{ p.tag }}</span>
+            <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:30px;line-height:1.2;letter-spacing:-.01em;margin:12px 0 12px">{{ p.title }}</h2>
+            <p style="font-size:15.5px;line-height:1.6;color:hsl(var(--muted));margin:0 0 20px">{{ p.excerpt }}</p>
+            <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:hsl(var(--muted))"><span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,hsl(var(--primary)),hsl(var(--accent)))"></span>{{ p.author }} · {{ p.date }}</div>
+          </div>
+        </div>
+      </sc-for>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:12px">
+        <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+          <div style="border-radius:var(--radius);overflow:hidden;border:1px solid hsl(var(--border) / 0.7);background:hsl(var(--surface) / 0.6);backdrop-filter:blur(14px);transition:transform .25s" style-hover="transform:translateY(-5px)">
+            <div style="aspect-ratio:16/10;overflow:hidden">
+              <img src="{{ p.img }}" alt="{{ p.title }}" style="width:100%;height:100%;object-fit:cover;display:block"/>
+            </div>
+            <div style="padding:22px">
+              <span style="font-size:11.5px;font-weight:700;color:hsl(var(--accent));text-transform:uppercase;letter-spacing:.05em">{{ p.tag }}</span>
+              <div style="margin-top:8px;font-family:'Spectral',serif;font-weight:600;font-size:20px;line-height:1.3">{{ p.title }}</div>
+              <p style="font-size:14px;line-height:1.55;color:hsl(var(--muted));margin:10px 0 0">{{ p.excerpt }}</p>
+              <div style="margin-top:16px;font-size:12.5px;color:hsl(var(--muted))">{{ p.date }} · {{ p.read }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- ========== BOOK ========== -->
+    <sc-if value="{{ isBook }}">
+    <section style="max-width:760px;margin:0 auto;padding:48px 24px 0">
+      <sc-if value="{{ bookDone }}">
+        <div style="text-align:center;padding:56px 32px;border-radius:28px;background:hsl(var(--surface) / 0.66);backdrop-filter:blur(18px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 24px 60px -28px hsl(var(--primary) / 0.4)">
+          <div style="width:72px;height:72px;border-radius:50%;background:hsl(var(--success) / 0.15);color:hsl(var(--success));display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 20px">✓</div>
+          <h1 style="font-family:'Spectral',serif;font-weight:600;font-size:36px;letter-spacing:-.02em;margin:0 0 10px">You're booked!</h1>
+          <p style="font-size:16.5px;color:hsl(var(--muted));line-height:1.6;max-width:26em;margin:0 auto 24px">We've held <strong style="color:hsl(var(--foreground))">{{ summaryService }}</strong> on <strong style="color:hsl(var(--foreground))">{{ summaryWhen }}</strong>. A confirmation is on its way to {{ formEmail }}.</p>
+          <div style="display:inline-flex;gap:12px">
+            <button onClick="{{ resetBooking }}" style="border:1px solid hsl(var(--border));background:hsl(var(--surface) / 0.6);color:hsl(var(--foreground));font-family:inherit;font-weight:600;font-size:15px;padding:13px 22px;border-radius:999px;cursor:pointer">Book another</button>
+            <button onClick="{{ goHome }}" style="border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:inherit;font-weight:700;font-size:15px;padding:13px 24px;border-radius:999px;cursor:pointer">Back to home</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ bookActive }}">
+      <div>
+        <div style="text-align:center;margin-bottom:26px">
+          <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:hsl(var(--accent))">Book Appointment</div>
+          <h1 style="font-family:'Spectral',serif;font-weight:600;font-size:40px;letter-spacing:-.02em;margin:8px 0 0">{{ stepTitle }}</h1>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:30px">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;background:{{ st.bg }};color:{{ st.color }};border:1px solid {{ st.border }};transition:all .3s">{{ st.n }}</span>
+              <span style="width:26px;height:2px;background:{{ st.line }}"></span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:30px;border-radius:26px;background:hsl(var(--surface) / 0.66);backdrop-filter:blur(18px);border:1px solid hsl(var(--border) / 0.7);box-shadow:0 20px 50px -28px hsl(var(--primary) / 0.35)">
+          <sc-if value="{{ isStep1 }}">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <sc-for list="{{ bookServices }}" as="s" hint-placeholder-count="6">
+                <button onClick="{{ s.onSelect }}" style="text-align:left;cursor:pointer;padding:18px;border-radius:16px;background:{{ s.cardBg }};border:1.5px solid {{ s.cardBorder }};font-family:inherit;transition:all .2s" style-hover="border-color:hsl(var(--primary))">
+                  <div style="display:flex;justify-content:space-between;align-items:center">
+                    <span style="display:flex;width:38px;height:38px;border-radius:11px;align-items:center;justify-content:center;background:hsl(var(--primary) / 0.12);color:hsl(var(--primary));font-size:18px">{{ s.icon }}</span>
+                    <span style="width:20px;height:20px;border-radius:50%;border:1.5px solid {{ s.dotBorder }};background:{{ s.dotBg }}"></span>
+                  </div>
+                  <div style="margin-top:12px;font-weight:700;font-size:15.5px;color:hsl(var(--foreground))">{{ s.name }}</div>
+                  <div style="font-size:12.5px;color:hsl(var(--muted));margin-top:3px">{{ s.category }}</div>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep2 }}">
+            <div>
+              <div style="font-weight:700;font-size:15px;margin-bottom:12px">Pick a day</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px">
+                <sc-for list="{{ bookDates }}" as="d" hint-placeholder-count="6">
+                  <button onClick="{{ d.onSelect }}" style="cursor:pointer;padding:12px 14px;border-radius:14px;background:{{ d.bg }};border:1.5px solid {{ d.border }};color:{{ d.color }};font-family:inherit;text-align:center;min-width:66px;transition:all .2s">
+                    <div style="font-size:12px;font-weight:600;opacity:.8">{{ d.dow }}</div>
+                    <div style="font-family:'Spectral',serif;font-weight:600;font-size:22px;line-height:1.1">{{ d.day }}</div>
+                    <div style="font-size:11px;opacity:.7">{{ d.month }}</div>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="font-weight:700;font-size:15px;margin-bottom:12px">Available times</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                <sc-for list="{{ bookTimes }}" as="t" hint-placeholder-count="6">
+                  <button onClick="{{ t.onSelect }}" style="cursor:pointer;padding:12px;border-radius:12px;background:{{ t.bg }};border:1.5px solid {{ t.border }};color:{{ t.color }};font-family:inherit;font-weight:600;font-size:14px;transition:all .2s">{{ t.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep3 }}">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <sc-for list="{{ formFields }}" as="f" hint-placeholder-count="3">
+                <label style="display:block">
+                  <span style="display:block;font-weight:600;font-size:13.5px;margin-bottom:7px;color:hsl(var(--foreground))">{{ f.label }}</span>
+                  <input value="{{ f.value }}" onInput="{{ f.onInput }}" placeholder="{{ f.placeholder }}" type="{{ f.type }}" style="width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid hsl(var(--border));background:hsl(var(--surface));color:hsl(var(--foreground));font-family:inherit;font-size:15px;outline:none" style-focus="border-color:hsl(var(--primary))" />
+                </label>
+              </sc-for>
+              <label style="display:block">
+                <span style="display:block;font-weight:600;font-size:13.5px;margin-bottom:7px">Anything we should know? (optional)</span>
+                <textarea value="{{ notesValue }}" onInput="{{ onNotes }}" placeholder="Nervous patient, running late, specific concern…" rows="3" style="width:100%;padding:13px 15px;border-radius:13px;border:1.5px solid hsl(var(--border));background:hsl(var(--surface));color:hsl(var(--foreground));font-family:inherit;font-size:15px;outline:none;resize:vertical" style-focus="border-color:hsl(var(--primary))"></textarea>
+              </label>
+              <div style="padding:16px;border-radius:14px;background:hsl(var(--muted-bg) / 0.7);border:1px solid hsl(var(--border) / 0.6);font-size:14px;color:hsl(var(--muted))">Summary: <strong style="color:hsl(var(--foreground))">{{ summaryService }}</strong> · {{ summaryWhen }}</div>
+            </div>
+          </sc-if>
+
+          <div style="display:flex;justify-content:space-between;margin-top:26px">
+            <button onClick="{{ prevStep }}" style="border:1px solid hsl(var(--border));background:hsl(var(--surface) / 0.6);color:hsl(var(--foreground));font-family:inherit;font-weight:600;font-size:15px;padding:13px 22px;border-radius:999px;cursor:pointer;visibility:{{ backVisible }}">← Back</button>
+            <button onClick="{{ nextStep }}" disabled="{{ nextDisabled }}" style="border:none;background:{{ nextBg }};color:hsl(var(--primary-foreground));font-family:inherit;font-weight:700;font-size:15px;padding:13px 28px;border-radius:999px;cursor:{{ nextCursor }};opacity:{{ nextOpacity }};transition:all .2s">{{ nextLabel }}</button>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+    </section>
+    </sc-if>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="position:relative;z-index:1;margin-top:96px;background:hsl(var(--ink));color:hsl(var(--ink-foreground))">
+    <div style="max-width:1180px;margin:0 auto;padding:72px 24px 34px;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start">
+      <div>
+        <h2 style="font-family:'Spectral',serif;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.02em;margin:0">Let's Make That Smile Shine!</h2>
+        <div style="margin-top:38px">
+          <div style="font-weight:700;font-size:15px;margin-bottom:12px">Contact Us</div>
+          <div style="font-size:14px;line-height:1.7;opacity:.72">24 Rowan Street, Suite 3<br/>Greenwood Village, CO 80111</div>
+          <div style="font-size:14px;line-height:1.7;opacity:.72;margin-top:12px"><a href="tel:+15551234567" style="color:inherit;text-decoration:none">(555) 123-4567</a><br/><a href="mailto:hello@dentheal.com" style="color:inherit;text-decoration:none">hello@dentheal.com</a></div>
+        </div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(58px,11vw,148px);line-height:.85;letter-spacing:-.045em;margin-top:46px;color:hsl(var(--ink-foreground))">{{ brandLower }}</div>
+      </div>
+
+      <div style="background:hsl(var(--ink-foreground) / 0.05);border:1px solid hsl(var(--ink-foreground) / 0.12);border-radius:24px;padding:32px">
+        <sc-if value="{{ footerSent }}">
+          <div style="text-align:center;padding:44px 10px">
+            <div style="width:62px;height:62px;border-radius:50%;background:hsl(var(--primary));color:hsl(var(--primary-foreground));display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 18px">✓</div>
+            <div style="font-family:'Spectral',serif;font-weight:600;font-size:26px">Thanks, {{ fName }}!</div>
+            <div style="font-size:14px;opacity:.72;margin-top:8px;line-height:1.6">We've received your request and will be in touch shortly to confirm your appointment.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ footerFormVisible }}">
+        <div>
+          <div style="font-family:'Spectral',serif;font-weight:600;font-size:25px;margin-bottom:20px">Book Your Appointment</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <input value="{{ fName }}" onInput="{{ onFName }}" placeholder="Your Full Name" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid hsl(var(--ink-foreground) / 0.14);background:hsl(var(--ink-foreground) / 0.06);color:hsl(var(--ink-foreground));font-family:inherit;font-size:14px;outline:none" style-focus="border-color:hsl(var(--primary))" />
+            <input value="{{ fPhone }}" onInput="{{ onFPhone }}" placeholder="Phone Number" type="tel" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid hsl(var(--ink-foreground) / 0.14);background:hsl(var(--ink-foreground) / 0.06);color:hsl(var(--ink-foreground));font-family:inherit;font-size:14px;outline:none" style-focus="border-color:hsl(var(--primary))" />
+            <input value="{{ fEmail }}" onInput="{{ onFEmail }}" placeholder="Email Address" type="email" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid hsl(var(--ink-foreground) / 0.14);background:hsl(var(--ink-foreground) / 0.06);color:hsl(var(--ink-foreground));font-family:inherit;font-size:14px;outline:none" style-focus="border-color:hsl(var(--primary))" />
+            <select value="{{ fDate }}" onChange="{{ onFDate }}" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid hsl(var(--ink-foreground) / 0.14);background:hsl(var(--ink-foreground) / 0.06);color:hsl(var(--ink-foreground));font-family:inherit;font-size:14px;outline:none;cursor:pointer">
+              <option value="" style="color:#111">Preferred Date</option>
+              <sc-for list="{{ dateOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o }}" style="color:#111">{{ o }}</option></sc-for>
+            </select>
+            <select value="{{ fTime }}" onChange="{{ onFTime }}" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid hsl(var(--ink-foreground) / 0.14);background:hsl(var(--ink-foreground) / 0.06);color:hsl(var(--ink-foreground));font-family:inherit;font-size:14px;outline:none;cursor:pointer">
+              <option value="" style="color:#111">Preferred Time</option>
+              <sc-for list="{{ timeOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o }}" style="color:#111">{{ o }}</option></sc-for>
+            </select>
+            <select value="{{ fDoctor }}" onChange="{{ onFDoctor }}" style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid hsl(var(--ink-foreground) / 0.14);background:hsl(var(--ink-foreground) / 0.06);color:hsl(var(--ink-foreground));font-family:inherit;font-size:14px;outline:none;cursor:pointer">
+              <option value="" style="color:#111">Doctor Preference</option>
+              <sc-for list="{{ doctorOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o }}" style="color:#111">{{ o }}</option></sc-for>
+            </select>
+          </div>
+          <button onClick="{{ toggleAgree }}" style="display:flex;align-items:center;gap:10px;margin:16px 0 18px;background:none;border:none;padding:0;cursor:pointer;font-family:inherit">
+            <span style="width:20px;height:20px;border-radius:6px;border:1px solid hsl(var(--ink-foreground) / 0.35);background:{{ agreeBg }};color:hsl(var(--primary-foreground));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800">{{ agreeMark }}</span>
+            <span style="font-size:13px;color:hsl(var(--ink-foreground) / 0.75)">I agree to be contacted to confirm my appointment.</span>
+          </button>
+          <button onClick="{{ submitFooter }}" style="display:inline-flex;align-items:center;gap:14px;border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:inherit;font-weight:700;font-size:15px;padding:6px 6px 6px 24px;border-radius:12px;cursor:pointer;box-shadow:0 14px 30px -12px hsl(var(--primary) / 0.8);transition:transform .2s" style-hover="transform:translateY(-2px)">Book Now <span style="width:38px;height:38px;border-radius:9px;background:hsl(var(--primary-foreground) / 0.18);display:flex;align-items:center;justify-content:center">→</span></button>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:20px 24px;border-top:1px solid hsl(var(--ink-foreground) / 0.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center">
+      <div style="display:flex;align-items:center;gap:14px;font-size:13px;opacity:.8"><span style="font-weight:700;opacity:1">Follow Us:</span><span>Facebook</span><span style="opacity:.5">·</span><span>LinkedIn</span><span style="opacity:.5">·</span><span>Instagram</span></div>
+      <span style="font-size:13px;opacity:.6">© 2026 {{ brand }} Dental. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <button onClick="{{ goBook }}" style="position:fixed;bottom:22px;right:22px;z-index:60;border:none;background:hsl(var(--primary));color:hsl(var(--primary-foreground));font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;padding:15px 24px;border-radius:999px;cursor:pointer;box-shadow:0 16px 40px -12px hsl(var(--primary) / 0.9);transition:transform .2s" style-hover="transform:translateY(-3px)">Book Appointment</button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;brand&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Dentheal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;clinical&quot;,&quot;options&quot;:[&quot;clinical&quot;,&quot;mint&quot;,&quot;neutral&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;defaultMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;defaultPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;services&quot;,&quot;about&quot;,&quot;blog&quot;,&quot;book&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Preview&quot;}}">
+class Component extends DCLogic {
+  state = {
+    page: this.props.defaultPage || 'home',
+    theme: this.props.defaultTheme || 'clinical',
+    mode: this.props.defaultMode || 'light',
+    filter: 'All',
+    cmp: 50,
+    bookStep: 1,
+    service: null,
+    date: null,
+    time: null,
+    form: { name: '', email: '', phone: '' },
+    notes: '',
+    activeTeam: 'Dentist',
+    footer: { name:'', phone:'', email:'', date:'', time:'', doctor:'', agree:true },
+    footerSent: false
+  };
+
+  IMG = {
+    smile:'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=900&q=70',
+    exam:'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=70',
+    clinic:'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=70',
+    xray:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=70',
+    brushes:'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=900&q=70',
+    aligner:'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=70',
+    implant:'https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=900&q=70',
+    chair:'https://images.unsplash.com/photo-1616391182219-e080b4d1043a?auto=format&fit=crop&w=900&q=70',
+    manPortrait:'https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?auto=format&fit=crop&w=400&q=70',
+    dentistF:'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&q=70',
+    dentistM:'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=70',
+    doctorM:'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=70',
+    womanBiz:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=70'
+  };
+
+  SERVICES = [
+    { slug:'preventive', name:'General & Preventive', category:'Preventive', icon:'✚', img:'brushes', blurb:'Cleanings, exams and check-ups that keep problems small — or gone before they start.', points:['Comprehensive exam & X-rays','Professional cleaning','Personalised home-care plan'], price:'From $89' },
+    { slug:'cosmetic', name:'Cosmetic Dentistry', category:'Cosmetic', icon:'✦', img:'smile', blurb:'Veneers, bonding and smile design to give you a look that feels like you — only brighter.', points:['Porcelain veneers','Composite bonding','Digital smile preview'], price:'Consult free' },
+    { slug:'whitening', name:'Teeth Whitening', category:'Cosmetic', icon:'✧', img:'xray', blurb:'In-chair and take-home whitening that lifts years of stains in a single, comfortable session.', points:['Same-day results','Enamel-safe formula','Custom trays included'], price:'From $199' },
+    { slug:'implants', name:'Dental Implants', category:'Restorative', icon:'◉', img:'implant', blurb:'Permanent, natural-feeling replacements for missing teeth — planned in 3D for precision.', points:['3D-guided placement','Single tooth to full arch','Lifetime-focused materials'], price:'From $1,900' },
+    { slug:'ortho', name:'Orthodontics & Aligners', category:'Specialty', icon:'◈', img:'aligner', blurb:'Clear aligners and modern braces that straighten discreetly, on a timeline that fits your life.', points:['Clear aligner scans','Progress tracking','Retainers included'], price:'From $2,400' },
+    { slug:'emergency', name:'Emergency Dental Care', category:'Specialty', icon:'⚡', img:'exam', blurb:'Chipped, aching or knocked-out? Same-day emergency slots so you are never left in pain.', points:['Same-day appointments','Pain-first approach','Evenings & Saturdays'], price:'From $120' }
+  ];
+
+  THEMES = [
+    { key:'clinical', name:'Clinical Blue', dot:'linear-gradient(140deg,hsl(212 92% 47%),hsl(190 88% 40%))' },
+    { key:'mint', name:'Warm Mint', dot:'linear-gradient(140deg,hsl(162 58% 35%),hsl(178 62% 36%))' },
+    { key:'neutral', name:'Soft Neutral', dot:'linear-gradient(140deg,hsl(20 32% 33%),hsl(40 45% 55%))' }
+  ];
+
+  componentDidMount() { this.initReveal(); }
+  componentDidUpdate() { this.initReveal(); }
+  initReveal() {
+    if (typeof window === 'undefined') return;
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.setAttribute('data-shown','1'); this._io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    }
+    requestAnimationFrame(() => {
+      const nodes = document.querySelectorAll('[data-reveal]:not([data-shown])');
+      const vh = window.innerHeight || 800;
+      nodes.forEach(el => {
+        // reveal anything already in (or above) the viewport on mount
+        if (el.getBoundingClientRect().top < vh * 0.92) { el.setAttribute('data-shown','1'); return; }
+        this._io.observe(el);
+      });
+    });
+    // failsafe: if IntersectionObserver never fires, never leave content hidden
+    clearTimeout(this._revealFailsafe);
+    this._revealFailsafe = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]:not([data-shown])').forEach(el => el.setAttribute('data-shown','1'));
+    }, 1400);
+  }
+
+  go = (page) => { this.setState({ page }); if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  startBook = (service) => { this.setState({ page:'book', bookStep:1, service }); if (typeof window !== 'undefined') window.scrollTo({ top:0, behavior:'smooth' }); };
+  setTheme = (theme) => this.setState({ theme });
+  toggleMode = () => this.setState(s => ({ mode: s.mode === 'dark' ? 'light' : 'dark' }));
+  setFilter = (filter) => this.setState({ filter });
+
+  nextStep = () => {
+    const s = this.state;
+    if (s.bookStep === 1 && !s.service) return;
+    if (s.bookStep === 2 && !(s.date && s.time)) return;
+    if (s.bookStep === 3) {
+      if (!(s.form.name && s.form.email)) return;
+      this.setState({ bookStep: 5 });
+      if (typeof window !== 'undefined') window.scrollTo({ top:0, behavior:'smooth' });
+      return;
+    }
+    this.setState(st => ({ bookStep: st.bookStep + 1 }));
+  };
+  prevStep = () => this.setState(st => ({ bookStep: Math.max(1, st.bookStep - 1) }));
+  resetBooking = () => this.setState({ bookStep:1, service:null, date:null, time:null, form:{name:'',email:'',phone:''}, notes:'' });
+  setField = (k) => (e) => { const v = e.target.value; this.setState(st => ({ form: { ...st.form, [k]: v } })); };
+  setTeam = (t) => this.setState({ activeTeam: t });
+  setFooter = (k) => (e) => { const v = e.target.value; this.setState(st => ({ footer: { ...st.footer, [k]: v } })); };
+  toggleAgree = () => this.setState(st => ({ footer: { ...st.footer, agree: !st.footer.agree } }));
+  submitFooter = () => { const f = this.state.footer; if (f.name && f.email) this.setState({ footerSent: true }); };
+
+  DOCTORS = {
+    'Dentist': [
+      { name:'Dr. Amanda Cole', role:'Cosmetic Dentist', imgK:'dentistF', rating:'4.9' },
+      { name:'Dr. Sophia Rahman', role:'Pediatric Dentist', imgK:'womanBiz', rating:'4.8' },
+      { name:'Dr. Liam Patel', role:'Orthodontist', imgK:'dentistM', rating:'4.7' },
+      { name:'Dr. Ethan Brooks', role:'General Dentist', imgK:'doctorM', rating:'4.9' }
+    ],
+    'Surgeon': [
+      { name:'Dr. Marcus Reed', role:'Oral Surgeon', imgK:'dentistM', rating:'4.9' },
+      { name:'Dr. Nora Vance', role:'Implant Surgeon', imgK:'dentistF', rating:'4.8' },
+      { name:'Dr. Ethan Brooks', role:'Maxillofacial Surgeon', imgK:'doctorM', rating:'4.7' }
+    ],
+    'Patient Support': [
+      { name:'Tom Baker', role:'Patient Care Lead', imgK:'doctorM', rating:'5.0' },
+      { name:'Aisha Korn', role:'Care Coordinator', imgK:'womanBiz', rating:'4.9' },
+      { name:'Priya Shah', role:'Front Desk Lead', imgK:'dentistF', rating:'4.8' }
+    ]
+  };
+
+  DATES = (() => {
+    const dows = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const out = [];
+    const base = new Date(2026, 6, 6);
+    for (let i = 0; out.length < 6 && i < 12; i++) {
+      const d = new Date(base); d.setDate(base.getDate() + i);
+      if (d.getDay() === 0) continue;
+      out.push({ key:i, dow:dows[d.getDay()], day:d.getDate(), month:d.toLocaleString('en',{month:'short'}) });
+    }
+    return out;
+  })();
+  TIMES = ['9:00 AM','10:30 AM','12:00 PM','1:30 PM','3:00 PM','4:30 PM'];
+
+  renderVals() {
+    const s = this.state;
+    const cv = (name) => `hsl(var(--${name}))`;
+    const img = this.IMG;
+
+    const navDefs = [ ['Home','home'], ['Services','services'], ['About','about'], ['Blog','blog'] ];
+    const nav = navDefs.map(([label,key]) => {
+      const active = s.page === key;
+      return { label, onClick: () => this.go(key),
+        bg: active ? 'hsl(var(--primary) / 0.12)' : 'transparent',
+        color: active ? cv('primary') : cv('muted') };
+    });
+
+    const themeSwatches = this.THEMES.map(t => ({ name:t.name, dot:t.dot, onClick:()=>this.setTheme(t.key),
+      ring: s.theme === t.key ? cv('foreground') : 'transparent' }));
+
+    const withUi = (arr) => arr.map(x => ({ ...x, image: img[x.img], onBook: () => this.startBook(x.slug) }));
+
+    const filters = ['All','Preventive','Cosmetic','Restorative','Specialty'].map(f => {
+      const on = s.filter === f;
+      return { label:f, onClick:()=>this.setFilter(f),
+        bg: on ? cv('primary') : 'hsl(var(--surface) / 0.6)',
+        color: on ? cv('primary-foreground') : cv('foreground'),
+        border: on ? cv('primary') : cv('border') };
+    });
+    const visibleServices = withUi(this.SERVICES.filter(x => s.filter === 'All' || x.category === s.filter));
+
+    const bookServices = this.SERVICES.map(x => {
+      const on = s.service === x.slug;
+      return { ...x, onSelect:()=>this.setState({service:x.slug}),
+        cardBg: on ? 'hsl(var(--primary) / 0.08)' : 'hsl(var(--surface))',
+        cardBorder: on ? cv('primary') : cv('border'),
+        dotBorder: on ? cv('primary') : cv('border'),
+        dotBg: on ? cv('primary') : 'transparent' };
+    });
+    const bookDates = this.DATES.map(d => {
+      const on = s.date === d.key;
+      return { ...d, onSelect:()=>this.setState({date:d.key}),
+        bg: on ? cv('primary') : 'hsl(var(--surface))', border: on ? cv('primary') : cv('border'),
+        color: on ? cv('primary-foreground') : cv('foreground') };
+    });
+    const bookTimes = this.TIMES.map(t => {
+      const on = s.time === t;
+      return { label:t, onSelect:()=>this.setState({time:t}),
+        bg: on ? cv('primary') : 'hsl(var(--surface))', border: on ? cv('primary') : cv('border'),
+        color: on ? cv('primary-foreground') : cv('foreground') };
+    });
+    const stepLabels = ['Choose a service','Pick a date & time','Your details'];
+    const steps = [1,2,3].map(n => {
+      const done = s.bookStep > n, cur = s.bookStep === n;
+      return { n, bg: (done||cur) ? cv('primary') : 'hsl(var(--muted-bg))',
+        color: (done||cur) ? cv('primary-foreground') : cv('muted'),
+        border: (done||cur) ? cv('primary') : cv('border'),
+        line: done ? cv('primary') : cv('border') };
+    });
+
+    const formFields = [
+      { label:'Full name', value:s.form.name, onInput:this.setField('name'), placeholder:'Jordan Rivera', type:'text' },
+      { label:'Email', value:s.form.email, onInput:this.setField('email'), placeholder:'you@email.com', type:'email' },
+      { label:'Phone', value:s.form.phone, onInput:this.setField('phone'), placeholder:'(555) 000-0000', type:'tel' }
+    ];
+
+    const svcObj = this.SERVICES.find(x => x.slug === s.service);
+    const dateObj = this.DATES.find(d => d.key === s.date);
+    const summaryService = svcObj ? svcObj.name : 'your visit';
+    const summaryWhen = (dateObj ? `${dateObj.dow} ${dateObj.month} ${dateObj.day}` : 'a day') + (s.time ? ` at ${s.time}` : '');
+
+    let nextValid = true;
+    if (s.bookStep === 1) nextValid = !!s.service;
+    if (s.bookStep === 2) nextValid = !!(s.date && s.time);
+    if (s.bookStep === 3) nextValid = !!(s.form.name && s.form.email);
+
+    const footerCols = [
+      { title:'Care', links:[['Services','services'],['Book','book'],['Emergency','book']] },
+      { title:'Practice', links:[['About us','about'],['The journal','blog'],['Contact','about']] },
+      { title:'Visit', links:[['Hours','about'],['Location','about'],['New patients','book']] }
+    ].map(c => ({ title:c.title, links:c.links.map(([label,key])=>({ label, onClick:()=>this.go(key) })) }));
+
+    return {
+      brand: this.props.brand || 'Dentheal',
+      theme: s.theme, mode: s.mode,
+      page: s.page,
+      isHome: s.page==='home', isServices: s.page==='services', isAbout: s.page==='about', isBlog: s.page==='blog', isBook: s.page==='book',
+      goHome:()=>this.go('home'), goServices:()=>this.go('services'), goAbout:()=>this.go('about'), goBlog:()=>this.go('blog'), goBook:()=>this.go('book'),
+      nav, themeSwatches, toggleMode:this.toggleMode,
+      modeIcon: s.mode === 'dark' ? '☾' : '☀',
+
+      heroStats: [ {value:'15+',label:'Years of care'}, {value:'12k',label:'Happy patients'}, {value:'4.9★',label:'Average rating'} ],
+      trust: [ {mark:'✚',label:'Same-week visits'}, {mark:'$',label:'Insurance friendly'}, {mark:'◎',label:'Painless promise'}, {mark:'★',label:'Award-winning team'} ],
+      featured: withUi(this.SERVICES),
+      reasons: [
+        {mark:'01',title:'Gentle, judgment-free',body:'Nervous patients are our specialty. We go slow, explain everything, and never make you feel bad.'},
+        {mark:'02',title:'Transparent pricing',body:'Clear estimates before we begin. No surprise bills, no pressure to add treatments you don\u2019t need.'},
+        {mark:'03',title:'Modern technology',body:'3D imaging, intra-oral scanners and same-day crowns mean fewer visits and better outcomes.'},
+        {mark:'04',title:'Whole-family care',body:'From first tooth to golden years — one trusted team that grows with your family.'}
+      ],
+
+      // comparison slider
+      cmp: s.cmp,
+      cmpPos: s.cmp + '%',
+      cmpRight: (100 - s.cmp) + '%',
+      onCmp: (e) => this.setState({ cmp: Number(e.target.value) }),
+      cmpRef: (el) => { this._cmpEl = el; },
+
+      testimonials: [
+        {quote:'I actually used to dread the dentist. Now I look forward to it — that says everything.',name:'Priya M.',meta:'Patient · 3 years',avatar:img.womanBiz},
+        {quote:'They explained every option and never once pushed me. Rare and refreshing.',name:'Daniel O.',meta:'Implant patient',avatar:img.manPortrait},
+        {quote:'My kids ask when we\u2019re going back. Genuinely the kindest team we\u2019ve found.',name:'The Okafor family',meta:'Family plan',avatar:img.doctorM}
+      ],
+      postsTease: [
+        {img:img.brushes,tag:'Prevention',title:'The 2-minute habit that saves you thousands'},
+        {img:img.smile,tag:'Cosmetic',title:'Whitening, honestly: what actually works'},
+        {img:img.chair,tag:'Family',title:'Making the first dental visit a happy one'}
+      ],
+
+      filters, visibleServices,
+
+      aboutStats: [ {value:'15+',label:'Years open'}, {value:'6',label:'Specialists'}, {value:'12k',label:'Patients'}, {value:'4.9★',label:'Rating'} ],
+      values: [
+        {mark:'♥',title:'Kindness first',body:'Every decision starts with how it feels to be in the chair.'},
+        {mark:'◎',title:'Honesty always',body:'We recommend only what we\u2019d choose for our own family.'},
+        {mark:'✦',title:'Always improving',body:'Continuous training and the latest tech, never for its own sake.'}
+      ],
+      team: [
+        {name:'Dr. Elena Voss',role:'Founder · Lead Dentist',img:img.dentistF},
+        {name:'Dr. Marcus Reed',role:'Implants & Surgery',img:img.dentistM},
+        {name:'Aisha Korn',role:'Orthodontic Therapist',img:img.womanBiz},
+        {name:'Tom Baker',role:'Patient Care Lead',img:img.doctorM}
+      ],
+
+      featuredPost: [ {img:img.exam,tag:'Health',title:'Your gums are trying to tell you something',excerpt:'Bleeding when you brush isn\u2019t normal — but it is common, and almost always reversible. Here\u2019s what\u2019s really going on and the simple routine that fixes it.',author:'Dr. Elena Voss',date:'Jun 28, 2026'} ],
+      posts: [
+        {img:img.brushes,tag:'Prevention',title:'The 2-minute habit that saves you thousands',excerpt:'A quick look at why a consistent routine beats every expensive product on the shelf.',date:'Jun 20, 2026',read:'4 min read'},
+        {img:img.smile,tag:'Cosmetic',title:'Whitening, honestly: what actually works',excerpt:'Strips, trays, in-chair — we break down the real differences and what\u2019s safe for enamel.',date:'Jun 12, 2026',read:'6 min read'},
+        {img:img.chair,tag:'Family',title:'Making the first dental visit a happy one',excerpt:'Small tricks that turn a scary milestone into something your child looks forward to.',date:'Jun 3, 2026',read:'5 min read'}
+      ],
+
+      bookDone: s.bookStep === 5,
+      bookActive: s.bookStep >= 1 && s.bookStep <= 3,
+      stepTitle: stepLabels[s.bookStep - 1] || 'Book',
+      steps,
+      isStep1: s.bookStep===1, isStep2: s.bookStep===2, isStep3: s.bookStep===3,
+      bookServices, bookDates, bookTimes, formFields,
+      notesValue: s.notes, onNotes:(e)=>this.setState({notes:e.target.value}),
+      summaryService, summaryWhen, formEmail: s.form.email || 'your inbox',
+      nextStep:this.nextStep, prevStep:this.prevStep, resetBooking:this.resetBooking,
+      backVisible: s.bookStep > 1 ? 'visible' : 'hidden',
+      nextLabel: s.bookStep === 3 ? 'Confirm booking' : 'Continue',
+      nextDisabled: !nextValid,
+      nextBg: nextValid ? cv('primary') : cv('muted'),
+      nextCursor: nextValid ? 'pointer' : 'not-allowed',
+      nextOpacity: nextValid ? '1' : '.55',
+
+      footerCols,
+
+      // ---- Popular services (image cards) ----
+      popular: [
+        { name:'Therapeutic Dentistry', image:img.aligner, price:'From $80', category:'Therapeutic', slug:'preventive' },
+        { name:'Teeth Whitening', image:img.smile, price:'From $120', category:'Cosmetic', slug:'whitening' },
+        { name:'Dental Implants', image:img.implant, price:'From $500', category:'Restorative', slug:'implants' },
+        { name:'Dental Surgery', image:img.exam, price:'From $2000', category:'Surgical', slug:'emergency' }
+      ].map(x => ({ ...x, onClick: () => this.startBook(x.slug) })),
+
+      // ---- About numbered ----
+      aboutCols: [
+        { n:'01', title:'Experienced Dentists', body:'Our team is composed of highly qualified and compassionate dental professionals with years of hands-on experience.', icon:'❋' },
+        { n:'02', title:'Advanced Technology', body:'We invest in the latest dental technology — from digital X-rays to laser treatments — ensuring every procedure is faster, safer, and more comfortable.', icon:'◗' },
+        { n:'03', title:'Flexible Scheduling', body:'We understand that visiting the dentist can be stressful for many. That\u2019s why our clinic is designed with your comfort in mind.', icon:'✳' }
+      ],
+
+      // ---- Journey timeline ----
+      journey: [
+        { n:'01', title:'Schedule Your First Visit', body:'Easy online booking or call us directly to find the perfect time.' },
+        { n:'02', title:'Comprehensive Consultation', body:'Our experts assess your needs and customize a dental care plan.' },
+        { n:'03', title:'Personalized Treatment', body:'Receive gentle, professional treatment with cutting-edge technology.' },
+        { n:'04', title:'Ongoing Care & Follow-Up', body:'We ensure your smile stays bright with regular checkups and support.' }
+      ],
+
+      // ---- Team ----
+      teamTabs: ['Dentist','Surgeon','Patient Support'].map(t => ({
+        label:t, onClick:()=>this.setTeam(t),
+        bg: s.activeTeam===t ? cv('foreground') : 'transparent',
+        color: s.activeTeam===t ? cv('background') : cv('muted'),
+        border: s.activeTeam===t ? cv('foreground') : cv('border')
+      })),
+      doctors: (this.DOCTORS[s.activeTeam] || []).map(d => ({ ...d, img: img[d.imgK] })),
+
+      // ---- Hours ----
+      hours: [
+        { days:'Monday – Tuesday', time:'9:00 AM – 7:00 PM' },
+        { days:'Wednesday – Thursday', time:'9:00 AM – 7:00 PM' },
+        { days:'Friday – Saturday', time:'10:00 AM – 2:00 PM' }
+      ],
+      hoursImg: img.smile,
+
+      // ---- Footer form ----
+      brandLower: (this.props.brand || 'Dentheal').toLowerCase(),
+      footerSent: s.footerSent,
+      footerFormVisible: !s.footerSent,
+      fName:s.footer.name, fPhone:s.footer.phone, fEmail:s.footer.email,
+      fDate:s.footer.date, fTime:s.footer.time, fDoctor:s.footer.doctor, fAgree:s.footer.agree,
+      onFName:this.setFooter('name'), onFPhone:this.setFooter('phone'), onFEmail:this.setFooter('email'),
+      onFDate:this.setFooter('date'), onFTime:this.setFooter('time'), onFDoctor:this.setFooter('doctor'),
+      toggleAgree:this.toggleAgree, submitFooter:this.submitFooter,
+      agreeBg: s.footer.agree ? cv('primary') : 'transparent',
+      agreeMark: s.footer.agree ? '✓' : '',
+      dateOpts: this.DATES.map(d => `${d.dow} ${d.month} ${d.day}`),
+      timeOpts: this.TIMES,
+      doctorOpts: ['No preference','Dr. Amanda Cole','Dr. Sophia Rahman','Dr. Liam Patel','Dr. Marcus Reed','Dr. Ethan Brooks']
+    };
+  }
+}
+</script>
+</body>
+</html>

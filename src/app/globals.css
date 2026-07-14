@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Clinical Blue — only theme */
+  --background: 210 40% 99%;
+  --foreground: 214 32% 14%;
+  --surface: 0 0% 100%;
+  --surface-2: 210 40% 98%;
+  --muted: 214 15% 46%;
+  --muted-bg: 210 38% 96%;
+  --primary: 212 92% 47%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 190 88% 40%;
+  --accent-foreground: 0 0% 100%;
+  --border: 214 28% 89%;
+  --success: 150 62% 40%;
+  --radius: 22px;
+  --ink: 214 45% 12%;
+  --ink-foreground: 0 0% 100%;
+}
+
+[data-mode='dark'] {
+  --background: 220 30% 7%;
+  --foreground: 210 22% 92%;
+  --surface: 220 22% 11%;
+  --surface-2: 220 22% 9%;
+  --muted: 215 14% 63%;
+  --muted-bg: 220 20% 15%;
+  --border: 214 16% 22%;
+  --ink: 220 26% 13%;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: hsl(var(--foreground));
+  background:
+    radial-gradient(1100px 620px at 12% -8%, hsl(var(--primary) / 0.12), transparent 60%),
+    radial-gradient(1000px 700px at 104% 2%, hsl(var(--accent) / 0.12), transparent 55%),
+    hsl(var(--background));
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@keyframes dz-fade { from { opacity: 0; transform: translateY(18px);} to { opacity:1; transform:none; } }
+@keyframes dz-float { 0%,100% { transform: translate(0,0);} 50% { transform: translate(20px,-24px);} }
+@keyframes dz-float2 { 0%,100% { transform: translate(0,0);} 50% { transform: translate(-24px,18px);} }
+@keyframes dz-marquee { from { transform: translateX(-50%);} to { transform: translateX(0);} }
+
+[data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity .75s cubic-bezier(.16,.8,.3,1), transform .75s cubic-bezier(.16,.8,.3,1); }
+[data-reveal][data-shown='1'] { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+  [data-reveal] { opacity:1 !important; transform:none !important; transition:none !important; }
+}
+
+.font-serif { font-family: 'Spectral', Georgia, serif; }
