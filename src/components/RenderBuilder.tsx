@@ -1,8 +1,8 @@
 'use client';
-import { BuilderComponent, useIsPreviewing } from '@builder.io/react';
-import '@/components/builder-registry';
+import { Content, isPreviewing } from '@builder.io/sdk-react';
+import { customComponents } from '@/builder-registry';
 
-const BUILDER_ENABLED = Boolean(process.env.NEXT_PUBLIC_BUILDER_API_KEY);
+const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY!;
 
 type Props = {
   model?: string;
@@ -11,8 +11,15 @@ type Props = {
 };
 
 export default function RenderBuilder({ model = 'page', content, fallback }: Props) {
-  const isPreviewing = useIsPreviewing();
-  if (!BUILDER_ENABLED) return <>{fallback}</>;
-  if (content || isPreviewing) return <BuilderComponent model={model} content={content} />;
-  return <>{fallback}</>;
+  if (!apiKey) return <>{fallback}</>;
+  const previewing = typeof window !== 'undefined' && isPreviewing();
+  if (!content && !previewing) return <>{fallback}</>;
+  return (
+    <Content
+      model={model}
+      content={content}
+      apiKey={apiKey}
+      customComponents={customComponents}
+    />
+  );
 }
