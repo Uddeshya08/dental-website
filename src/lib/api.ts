@@ -13,6 +13,28 @@ export type BookingPayload = {
 
 export type BookingResult = { ok: true; id: string } | { ok: false; error: string };
 
+export type EnquiryPayload = { name: string; email: string; message: string };
+
+export async function submitEnquiry(payload: EnquiryPayload): Promise<BookingResult> {
+  const base = process.env.CLINIC_API_BASE_URL;
+  if (!base) return { ok: true, id: `mock_${Date.now()}` };
+  try {
+    const res = await fetch(`${base}/enquiries`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(process.env.CLINIC_API_KEY ? { Authorization: `Bearer ${process.env.CLINIC_API_KEY}` } : {})
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) return { ok: false, error: `HTTP ${res.status}` };
+    const data = await res.json();
+    return { ok: true, id: data.id ?? 'unknown' };
+  } catch (e) {
+    return { ok: false, error: (e as Error).message };
+  }
+}
+
 export async function submitBooking(payload: BookingPayload): Promise<BookingResult> {
   const base = process.env.CLINIC_API_BASE_URL;
   if (!base) return { ok: true, id: `mock_${Date.now()}` };

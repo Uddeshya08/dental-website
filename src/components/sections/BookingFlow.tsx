@@ -99,13 +99,29 @@ export default function BookingFlow() {
             {SERVICES.map(s => {
               const on = service === s.slug;
               return (
-                <button key={s.slug} onClick={() => setService(s.slug)} style={{ textAlign:'left', cursor:'pointer', padding:18, borderRadius:16, background: on ? 'hsl(var(--primary) / 0.08)' : 'hsl(var(--surface))', border:`1.5px solid ${on ? 'hsl(var(--primary))' : 'hsl(var(--border))'}`, fontFamily:'inherit' }}>
+                <button key={s.slug} onClick={() => setService(s.slug)} style={{ textAlign:'left', cursor:'pointer', padding:18, borderRadius:16, background: on ? 'hsl(var(--primary) / 0.08)' : 'hsl(var(--surface))', border:`1.5px solid ${on ? 'hsl(var(--primary))' : 'hsl(var(--border))'}`, fontFamily:'inherit', overflow:'hidden' }}>
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                     <span style={{ display:'flex', width:38, height:38, borderRadius:11, alignItems:'center', justifyContent:'center', background:'hsl(var(--primary) / 0.12)', color:'hsl(var(--primary))', fontSize:18 }}>{s.icon}</span>
                     <span style={{ width:20, height:20, borderRadius:'50%', border:`1.5px solid ${on ? 'hsl(var(--primary))' : 'hsl(var(--border))'}`, background: on ? 'hsl(var(--primary))' : 'transparent' }} />
                   </div>
                   <div style={{ marginTop:12, fontWeight:700, fontSize:15.5, color:'hsl(var(--foreground))' }}>{s.name}</div>
-                  <div style={{ fontSize:12.5, color:'hsl(var(--muted))', marginTop:3 }}>{s.category}</div>
+                  <div
+                    aria-hidden={!on}
+                    style={{
+                      display:'grid',
+                      gridTemplateRows: on ? '1fr' : '0fr',
+                      transition:'grid-template-rows .35s cubic-bezier(.16,.8,.3,1), margin-top .3s ease',
+                      marginTop: on ? 10 : 0
+                    }}
+                  >
+                    <div style={{ overflow:'hidden' }}>
+                      <div style={{ position:'relative', width:'100%', aspectRatio:'16/9', borderRadius:12, overflow:'hidden', border:'1px solid hsl(var(--border))' }}>
+                        <img src={s.image} alt={s.name} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+                      </div>
+                      <p style={{ fontSize:12.5, lineHeight:1.5, color:'hsl(var(--muted))', margin:'8px 0 0' }}>{s.blurb}</p>
+                    </div>
+                  </div>
+                  <div style={{ fontSize:12.5, color:'hsl(var(--muted))', marginTop:6 }}>{s.category}</div>
                 </button>
               );
             })}

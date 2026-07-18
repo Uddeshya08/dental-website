@@ -69,22 +69,53 @@ export const JOURNEY = [
   { n:'04', title:'Ongoing Care & Follow-Up', body:'We ensure your smile stays bright with regular checkups and support.' }
 ];
 
-export const DOCTORS: Record<string, { name:string; role:string; img:string; rating:string }[]> = {
+export type Doctor = {
+  name: string;
+  role: string;
+  img: string;
+  rating: string;
+  description?: string;
+  practoUrl?: string;
+};
+
+export const DOCTORS: Record<string, Doctor[]> = {
   Dentist: [
-    { name:'Dr. Amanda Cole', role:'Cosmetic Dentist', img:IMG.dentistF, rating:'4.9' },
-    { name:'Dr. Sophia Rahman', role:'Pediatric Dentist', img:IMG.womanBiz, rating:'4.8' },
-    { name:'Dr. Liam Patel', role:'Orthodontist', img:IMG.dentistM, rating:'4.7' },
-    { name:'Dr. Ethan Brooks', role:'General Dentist', img:IMG.doctorM, rating:'4.9' }
-  ],
-  Surgeon: [
-    { name:'Dr. Marcus Reed', role:'Oral Surgeon', img:IMG.dentistM, rating:'4.9' },
-    { name:'Dr. Nora Vance', role:'Implant Surgeon', img:IMG.dentistF, rating:'4.8' },
-    { name:'Dr. Ethan Brooks', role:'Maxillofacial Surgeon', img:IMG.doctorM, rating:'4.7' }
-  ],
-  'Patient Support': [
-    { name:'Tom Baker', role:'Patient Care Lead', img:IMG.doctorM, rating:'5.0' },
-    { name:'Aisha Korn', role:'Care Coordinator', img:IMG.womanBiz, rating:'4.9' },
-    { name:'Priya Shah', role:'Front Desk Lead', img:IMG.dentistF, rating:'4.8' }
+    {
+      name: 'Dr. Seema Rathod',
+      role: 'Endodontist · Cosmetic Dentist',
+      img: '/doctors/seema.jpg',
+      rating: '4.9',
+      description:
+        'MDS — Conservative Dentistry & Endodontics, BDS. 19 years experience.\nSpecialist in root-canal treatment, aesthetic restorations, and smile design.',
+      practoUrl: ''
+    },
+    {
+      name: 'Dr. Isha Shaikh',
+      role: 'Periodontist · Implantologist',
+      img: '/doctors/isha.jpg',
+      rating: '4.8',
+      description:
+        'BDS, MDS — Periodontics. 5 years experience.\nDental Surgeon focused on gum health, dental implants, and periodontal care.',
+      practoUrl: ''
+    },
+    {
+      name: 'Dr. Sujay Patil',
+      role: 'General & Restorative Dentist',
+      img: '/doctors/sujay.jpg',
+      rating: '4.8',
+      description:
+        'BDS. General dentistry — cleanings, fillings, crowns, and preventive care.\nKnown for a calm chairside manner and gentle, patient-first approach.',
+      practoUrl: ''
+    },
+    {
+      name: 'Dr. Sayed Shibli',
+      role: 'Orthodontist',
+      img: '/doctors/shibli.jpg',
+      rating: '4.9',
+      description:
+        'Orthodontist — clear aligners, braces, and bite correction.\nTreats crowding, spacing, and jaw alignment for teens and adults.',
+      practoUrl: ''
+    }
   ]
 };
 
@@ -143,10 +174,10 @@ export const TEAM = [
 
 export const CLINIC = {
   brand: 'Dentheal',
-  address1: '24 Rowan Street, Suite 3',
-  address2: 'Greenwood Village, CO 80111',
-  phone: '(555) 123-4567',
-  phoneRaw: '+15551234567',
+  address1: '201, Royal Vatika, Next to Kannu Ki Chai',
+  address2: 'Landmark: High Street Extension, Near Baner, Pune',
+  phone: '+91 90966 70711',
+  phoneRaw: '+919096670711',
   email: 'hello@dentheal.com'
 };
 
