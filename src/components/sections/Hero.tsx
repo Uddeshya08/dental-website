@@ -9,6 +9,8 @@ type Props = {
   ctaPrimary?: string;
   ctaSecondary?: string;
   image?: string;
+  videoSrc?: string;
+  posterSrc?: string;
   stats?: { value: string; label: string }[];
 };
 
@@ -20,6 +22,8 @@ export default function Hero({
   ctaPrimary = 'Book your visit',
   ctaSecondary = 'Explore services',
   image = IMG.smile,
+  videoSrc = '/videos/hero.mp4',
+  posterSrc = IMG.smile,
   stats = HERO_STATS
 }: Props) {
   return (
@@ -47,7 +51,21 @@ export default function Hero({
       </div>
       <div style={{ position:'relative' }}>
         <div style={{ position:'relative', borderRadius:28, overflow:'hidden', aspectRatio:'4/5', border:'1px solid hsl(var(--border) / 0.7)', boxShadow:'0 30px 70px -30px hsl(var(--primary) / 0.4)' }}>
-          <img src={image} alt="Patient with a bright, healthy smile" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+          {videoSrc ? (
+            <video
+              src={videoSrc}
+              poster={posterSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Dental care demonstration"
+              style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}
+            />
+          ) : (
+            <img src={image} alt="Patient with a bright, healthy smile" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+          )}
         </div>
         <div style={{ position:'absolute', bottom:-22, left:-22, padding:'16px 18px', borderRadius:18, background:'hsl(var(--surface) / 0.75)', backdropFilter:'blur(18px)', border:'1px solid hsl(var(--border) / 0.7)', boxShadow:'0 18px 40px -18px hsl(var(--primary) / 0.4)', display:'flex', alignItems:'center', gap:12 }}>
           <span style={{ width:34, height:34, borderRadius:'50%', background:'linear-gradient(140deg,hsl(var(--primary)),hsl(var(--accent)))', border:'2px solid hsl(var(--surface))' }} />

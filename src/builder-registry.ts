@@ -27,6 +27,8 @@ export const customComponents: RegisteredComponent[] = [
       { name: 'ctaPrimary', type: 'string', defaultValue: 'Book your visit' },
       { name: 'ctaSecondary', type: 'string', defaultValue: 'Explore services' },
       { name: 'image', type: 'file', allowedFileTypes: ['jpeg','jpg','png','webp'] },
+      { name: 'videoSrc', type: 'string', helperText: 'MP4 URL. Empty = show image instead.' },
+      { name: 'posterSrc', type: 'file', allowedFileTypes: ['jpeg','jpg','png','webp'], helperText: 'Poster shown before video loads' },
       { name: 'stats', type: 'list', subFields: [
         { name: 'value', type: 'string' }, { name: 'label', type: 'string' }
       ] }
