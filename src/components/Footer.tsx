@@ -15,7 +15,9 @@ export default function Footer() {
               <a href={`mailto:${CLINIC.email}`} style={{ color:'inherit', textDecoration:'none' }}>{CLINIC.email}</a>
             </div>
           </div>
-          <div style={{ fontWeight:800, fontSize:'clamp(58px,11vw,148px)', lineHeight:.85, letterSpacing:'-.045em', marginTop:46, color:'hsl(var(--ink-foreground))' }}>{CLINIC.brand.toLowerCase()}</div>
+          <div style={{ marginTop:46 }}>
+            <img src="/dentheal-logo.jpeg" alt={`${CLINIC.brand} logo`} style={{ height:'clamp(90px, 18vw, 160px)', width:'auto', display:'block' }} />
+          </div>
         </div>
 
         <div style={{ background:'hsl(var(--ink-foreground) / 0.05)', border:'1px solid hsl(var(--ink-foreground) / 0.12)', borderRadius:24, padding:32 }}>

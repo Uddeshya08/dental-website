@@ -69,52 +69,170 @@ export const JOURNEY = [
   { n:'04', title:'Ongoing Care & Follow-Up', body:'We ensure your smile stays bright with regular checkups and support.' }
 ];
 
+export type DoctorReview = { name: string; meta?: string; rating: number; quote: string };
+export type DoctorSpecialty = { icon: string; title: string; body: string };
+
 export type Doctor = {
+  slug?: string;
   name: string;
   role: string;
   img: string;
   rating: string;
   description?: string;
   practoUrl?: string;
+  pronoun?: 'he' | 'she' | 'they';
+  bio?: string[];
+  qualifications?: string[];
+  experience?: string;
+  specialties?: DoctorSpecialty[];
+  reviews?: DoctorReview[];
 };
 
 export const DOCTORS: Record<string, Doctor[]> = {
   Dentist: [
     {
+      slug: 'seema-rathod',
+      pronoun: 'she',
       name: 'Dr. Seema Rathod',
-      role: 'Endodontist · Cosmetic Dentist',
+      role: 'Endodontist',
       img: '/doctors/seema.jpg',
       rating: '4.9',
       description:
-        'MDS — Conservative Dentistry & Endodontics, BDS. 19 years experience.\nSpecialist in root-canal treatment, aesthetic restorations, and smile design.',
-      practoUrl: ''
+        'MDS — Conservative Dentistry & Endodontics, BDS. 20+ years experience.\nRetreatment Specialist — 15,000+ root canals with advanced dental microscopy.',
+      practoUrl: '',
+      experience: '20+ years',
+      qualifications: [
+        'MDS — Conservative Dentistry & Endodontics',
+        'BDS — Bharati Vidyapeeth Dental College, Pune',
+        'Member — Style Italiano (International)',
+        'Former Assistant Professor — Bharati Vidyapeeth, Navi Mumbai'
+      ],
+      bio: [
+        'Dr. Seema Rathod is a distinguished Endodontist with over 20 years of clinical excellence and an MDS in Conservative Dentistry & Endodontics from Bharati Vidyapeeth Dental College, Pune. Recognized as a Retreatment Specialist in West Pune, she has successfully performed 15,000+ root canal treatments and is highly regarded for managing complex and previously failed root canal cases with exceptional precision using advanced dental microscopy, helping patients preserve their natural teeth even in the most challenging situations.',
+        'Complementing her extensive clinical expertise, Dr. Rathod has also served as an Assistant Professor at Bharati Vidyapeeth Dental College, Navi Mumbai, where she mentored aspiring dental professionals and contributed to academic excellence. Her professional journey includes treating cancer patients at the Advanced Centre for Treatment, Research and Education in Cancer (ACTREC), Navi Mumbai, as well as providing dental care and patient counseling at Taloja Central Jail.',
+        'A respected speaker and educator, Dr. Rathod has been invited twice as a guest speaker at the National Diabetes Conference and is a proud member of the internationally acclaimed Style Italiano group, reflecting her commitment to innovation, precision, and excellence in modern endodontics and esthetic dentistry.'
+      ],
+      specialties: [
+        { icon: '◉', title: 'Root Canal Treatment', body: '15,000+ successful RCTs. Painless, precise, single-sitting where possible.' },
+        { icon: '⟲', title: 'Retreatment Specialist', body: 'Fixes previously failed root canals — saves teeth others recommend extracting.' },
+        { icon: '🔬', title: 'Dental Microscopy', body: 'Advanced magnification for complex cases — visualises what the naked eye misses.' },
+        { icon: '✦', title: 'Cosmetic & Esthetic Dentistry', body: 'Style Italiano-trained restorations, veneers, and smile design.' },
+        { icon: '❋', title: 'Conservative Dentistry', body: 'Preserves natural tooth structure with minimally invasive treatment planning.' },
+        { icon: '🎓', title: 'Academic & Speaker', body: 'Former Assistant Professor. Twice guest speaker at the National Diabetes Conference.' }
+      ],
+      reviews: [
+        { name: 'Rohit S.', meta: 'RCT patient · 2 months ago', rating: 5, quote: 'I had a failed root canal from another clinic — Dr. Seema saved the tooth. Painless, precise, and she explained every step.' },
+        { name: 'Anita M.', meta: 'Cosmetic restoration', rating: 5, quote: 'The whole team is kind, but Dr. Rathod is next-level. My front tooth looks completely natural.' },
+        { name: 'Kaustubh P.', meta: 'Retreatment · 5 months ago', rating: 5, quote: 'Two other dentists told me to extract. She did a microscope retreatment and I still have my tooth. Highly recommend.' }
+      ]
     },
     {
-      name: 'Dr. Isha Shaikh',
+      slug: 'isha-shaikh',
+      pronoun: 'she',
+      name: 'Dr. Isha Sheikh',
       role: 'Periodontist · Implantologist',
       img: '/doctors/isha.jpg',
       rating: '4.8',
       description:
-        'BDS, MDS — Periodontics. 5 years experience.\nDental Surgeon focused on gum health, dental implants, and periodontal care.',
-      practoUrl: ''
+        'MDS — Periodontology & Implantology. 5+ years experience.\nAssociate Periodontist — gum disease, laser therapy, and dental implants.',
+      practoUrl: '',
+      experience: '5+ years',
+      qualifications: [
+        'MDS — Periodontology & Implantology',
+        'Fellowship — General Dentistry',
+        'Certified — CBCT Interpretation',
+        'Certified — Laser Dentistry & Implant Dentistry'
+      ],
+      bio: [
+        'Dr. Isha Sheikh, MDS (Periodontology & Implantology), is an Associate Periodontist at Dentheal Family Clinic with over 5 years of clinical experience in comprehensive dental care. She specializes in the prevention and treatment of gum diseases, periodontal surgeries, laser therapy, regenerative procedures, soft tissue management, and dental implants.',
+        'She has completed a Fellowship Program in General Dentistry and has undergone certified training in CBCT interpretation, Laser Dentistry, and Implant Dentistry. Dr. Isha is committed to delivering evidence-based, personalized care with a focus on precision, patient comfort, and long-term oral health. Her dedication to continuous learning and ethical clinical practice enables her to provide high-quality periodontal care using modern techniques.'
+      ],
+      specialties: [
+        { icon: '❋', title: 'Gum Disease Treatment', body: 'Prevention and treatment of gingivitis and periodontitis — protects teeth long-term.' },
+        { icon: '◈', title: 'Periodontal Surgery', body: 'Advanced surgical care for deep gum issues, pocket reduction, and gum grafting.' },
+        { icon: '✧', title: 'Laser Dentistry', body: 'Minimally invasive laser therapy — less pain, faster healing, no scalpel.' },
+        { icon: '◉', title: 'Dental Implants', body: 'Single tooth to multi-implant placement with precision CBCT-guided planning.' },
+        { icon: '⟳', title: 'Regenerative Procedures', body: 'Bone and soft-tissue grafting to rebuild what disease has taken away.' },
+        { icon: '🔬', title: 'CBCT-Guided Planning', body: '3D imaging for accurate diagnosis and surgical precision on every case.' }
+      ],
+      reviews: [
+        { name: 'Meera J.', meta: 'Gum treatment · 3 months ago', rating: 5, quote: 'Dr. Isha caught my gum issue before it turned into something bigger. Painless laser treatment and now my gums are healthy.' },
+        { name: 'Vikram T.', meta: 'Implant patient', rating: 5, quote: 'She explained the CBCT scan clearly and the implant placement was smooth. Six months later it feels like my own tooth.' },
+        { name: 'Sneha R.', meta: 'Regenerative procedure', rating: 5, quote: 'Very patient, very thorough. She takes time to answer every question — no rushing.' }
+      ]
     },
     {
+      slug: 'sujay-patil',
+      pronoun: 'he',
       name: 'Dr. Sujay Patil',
-      role: 'General & Restorative Dentist',
+      role: 'Oral & Maxillofacial Surgeon',
       img: '/doctors/sujay.jpg',
-      rating: '4.8',
+      rating: '4.9',
       description:
-        'BDS. General dentistry — cleanings, fillings, crowns, and preventive care.\nKnown for a calm chairside manner and gentle, patient-first approach.',
-      practoUrl: ''
+        'MDS — Oral & Maxillofacial Surgery. 15+ years experience.\nVisiting Consultant · 9,000+ extractions and oral surgical procedures.',
+      practoUrl: '',
+      experience: '15+ years',
+      qualifications: [
+        'MDS — Oral & Maxillofacial Surgery (2016)',
+        'Reputed Dental College, Pune',
+        'Visiting Consultant — Dentheal (since 2020)',
+        '9,000+ successful extractions & surgeries'
+      ],
+      bio: [
+        'Dr. Sujay, MDS (Oral & Maxillofacial Surgery), is a Visiting Consultant Oral & Maxillofacial Surgeon associated with our clinic since 2020. With over 15 years of clinical experience, he brings advanced expertise in the diagnosis and surgical management of complex conditions involving the mouth, jaws, face, and neck.',
+        'He completed his Master of Dental Surgery (MDS) in Oral & Maxillofacial Surgery in 2016 from a reputed dental college in Pune. His areas of specialization include impacted wisdom tooth surgeries, facial trauma management, corrective jaw (orthognathic) surgery, oral pathology, craniofacial deformities, and advanced oral surgical procedures. Dr. Sujay has successfully performed 9,000+ extractions and oral surgical procedures, reflecting his extensive surgical experience and clinical excellence.',
+        'He is committed to comprehensive patient care through precise diagnosis, individualized treatment planning, and meticulous pre- and post-operative management. Known for his calm demeanor and patient-centric approach, he emphasizes safe, evidence-based treatment with a focus on patient comfort and optimal outcomes. His dedication to clinical excellence and ethical practice makes him a trusted choice for patients requiring specialized oral and maxillofacial surgical care.'
+      ],
+      specialties: [
+        { icon: '◆', title: 'Wisdom Tooth Surgery', body: 'Impacted wisdom tooth removal — precise, comfortable, minimal downtime.' },
+        { icon: '⚡', title: 'Facial Trauma', body: 'Fracture management and reconstruction after facial injuries.' },
+        { icon: '◈', title: 'Corrective Jaw Surgery', body: 'Orthognathic surgery for jaw alignment, bite correction, and facial symmetry.' },
+        { icon: '🔬', title: 'Oral Pathology', body: 'Diagnosis and surgical treatment of oral lesions, cysts, and tumors.' },
+        { icon: '◉', title: 'Craniofacial Deformities', body: 'Complex reconstructive procedures for congenital or acquired deformities.' },
+        { icon: '❋', title: 'Advanced Oral Surgery', body: 'Full range of oral surgical procedures with meticulous pre- and post-op care.' }
+      ],
+      reviews: [
+        { name: 'Rahul K.', meta: 'Wisdom tooth extraction', rating: 5, quote: 'Was terrified before the surgery. Dr. Sujay was calm, clear, and it was over before I knew it. Zero swelling next day.' },
+        { name: 'Priya D.', meta: 'Facial trauma follow-up', rating: 5, quote: 'After my accident, he handled the reconstruction beautifully. Barely any scar and full function back.' },
+        { name: 'Amit S.', meta: 'Orthognathic surgery', rating: 5, quote: 'Complete change in my bite and profile. His planning was so thorough — I knew every step in advance.' }
+      ]
     },
     {
-      name: 'Dr. Sayed Shibli',
+      slug: 'sayed-shibli',
+      pronoun: 'he',
+      name: 'Dr. Shibli Syed',
       role: 'Orthodontist',
       img: '/doctors/shibli.jpg',
       rating: '4.9',
       description:
-        'Orthodontist — clear aligners, braces, and bite correction.\nTreats crowding, spacing, and jaw alignment for teens and adults.',
-      practoUrl: ''
+        'MDS — Orthodontics & Dentofacial Orthopaedics. Braces, aligners, cosmetic & implant dentistry.\nMember IDA & Indian Orthodontic Society.',
+      practoUrl: '',
+      experience: '15+ years',
+      qualifications: [
+        'MDS — Orthodontics & Dentofacial Orthopaedics (MUHS Nashik, 2013)',
+        'BDS — MUHS Nashik (2008)',
+        'Member — Indian Dental Association',
+        'Member — Indian Orthodontic Society',
+        'Published in peer-reviewed journals'
+      ],
+      bio: [
+        'Dr. Shibli Syed grew up in Amravati (Maharashtra) and obtained his BDS Degree from Maharashtra University Of Health Sciences, Nasik in 2008. After graduating, he embarked on a mission to escalate his knowledge by actively participating in various continuing dental education programmes. After a year of training in a high-profile Cosmetic Dental Practice in Pune, he has never looked back. He has worked in numerous private practices in Pune.',
+        'Dr. Shibli was committed to advancing studies in the area of dentistry that he is passionate about — Orthodontics, Cosmetic and Implant Dentistry. In 2010 he started his higher studies for Masters in Orthodontics And Dentofacial Orthopaedics and obtained his MDS degree from Maharashtra University Of Health Sciences, Nashik in 2013.',
+        'He is also a member of the Indian Dental Association & Indian Orthodontic Society, and has various publications in dental journals — reflecting his commitment to research, learning, and elevating the standard of orthodontic care in Pune.'
+      ],
+      specialties: [
+        { icon: '◈', title: 'Braces (Metal & Ceramic)', body: 'Traditional and tooth-coloured braces for crowding, spacing, and bite correction.' },
+        { icon: '✧', title: 'Clear Aligners', body: 'Discreet aligner therapy — straighten teeth without visible brackets or wires.' },
+        { icon: '◆', title: 'Dentofacial Orthopaedics', body: 'Growth-modulating treatment for children and teens — guides jaw development early.' },
+        { icon: '✦', title: 'Cosmetic Dentistry', body: 'Smile design, veneers, and aesthetic finishing to complement orthodontic work.' },
+        { icon: '◉', title: 'Implant Dentistry', body: 'Implant placement and restoration for missing teeth in adult patients.' },
+        { icon: '🎓', title: 'Published Researcher', body: 'Peer-reviewed publications and continuing education leader in orthodontics.' }
+      ],
+      reviews: [
+        { name: 'Ananya P.', meta: 'Ceramic braces · 18 months', rating: 5, quote: 'Perfect result. He mapped out the whole plan on day one and stuck to it. My teeth are exactly where he said they would be.' },
+        { name: 'Karan M.', meta: 'Clear aligners', rating: 5, quote: 'Loved that no one could tell I was in treatment. Weekly check-ins were quick and he adjusted the plan when needed.' },
+        { name: 'Deepika T.', meta: "Parent of teen patient", rating: 5, quote: 'My daughter was nervous about braces. Dr. Shibli was gentle and honest with her. She actually enjoys her appointments.' }
+      ]
     }
   ]
 };
@@ -187,3 +305,19 @@ export const NAV = [
   { label:'About', href:'/about' },
   { label:'Blog', href:'/blog' }
 ];
+
+export function findDoctorBySlug(slug: string): Doctor | undefined {
+  for (const group of Object.values(DOCTORS)) {
+    const found = group.find(d => d.slug === slug);
+    if (found) return found;
+  }
+  return undefined;
+}
+
+export function allDoctorSlugs(): string[] {
+  const out: string[] = [];
+  for (const group of Object.values(DOCTORS)) {
+    for (const d of group) if (d.slug) out.push(d.slug);
+  }
+  return out;
+}

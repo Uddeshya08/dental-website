@@ -33,11 +33,8 @@ export default function Header() {
     <>
       <header style={{ position:'sticky', top:0, zIndex:50, padding:'12px 14px', display:'flex', justifyContent:'center' }}>
         <div style={{ width:'100%', maxWidth:1180, display:'flex', alignItems:'center', gap:12, padding:'10px 12px 10px 16px', borderRadius:999, background:'hsl(var(--surface) / 0.66)', backdropFilter:'blur(18px) saturate(1.4)', WebkitBackdropFilter:'blur(18px) saturate(1.4)', border:'1px solid hsl(var(--border) / 0.7)', boxShadow:'0 10px 40px -14px hsl(var(--primary) / 0.28)' }}>
-          <Link href="/" style={{ display:'flex', alignItems:'center', gap:10, textDecoration:'none', flexShrink:0 }}>
-            <span style={{ width:32, height:32, borderRadius:11, background:'linear-gradient(140deg, hsl(var(--primary)), hsl(var(--accent)))', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'0 6px 16px -6px hsl(var(--primary) / 0.7)' }}>
-              <span style={{ width:12, height:12, borderRadius:'4px 8px 4px 8px', background:'hsl(var(--primary-foreground))' }} />
-            </span>
-            <span className="font-serif" style={{ fontWeight:600, fontSize:20, letterSpacing:'-.01em', color:'hsl(var(--foreground))' }}>{CLINIC.brand}</span>
+          <Link href="/" aria-label={CLINIC.brand} style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
+            <img src="/dentheal-logo.jpeg" alt={`${CLINIC.brand} logo`} style={{ height:44, width:'auto', display:'block' }} />
           </Link>
 
           <nav style={{ display:'flex', gap:4, marginLeft:8 }}>

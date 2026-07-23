@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Link from 'next/link';
 import { DOCTORS, type Doctor } from '@/lib/data';
 
 type Props = {
@@ -30,7 +31,7 @@ export default function Team({
   }, [selected]);
 
   return (
-    <section data-reveal style={{ maxWidth:1180, margin:'0 auto', padding:'96px 24px 0' }}>
+    <section id="team" data-reveal style={{ maxWidth:1180, margin:'0 auto', padding:'96px 24px 0' }}>
       <h2 className="font-serif" style={{ fontWeight:600, fontSize:42, lineHeight:1.1, letterSpacing:'-.02em', textAlign:'center', margin:'0 0 34px' }}>
         {heading}<span style={{ fontStyle:'italic', color:'hsl(var(--primary))' }}>{emphasis}</span>
       </h2>
@@ -60,13 +61,12 @@ export default function Team({
               onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
             >
               <div className="font-serif" style={{ fontWeight:600, fontSize:18 }}>{d.name}</div>
-              <div style={{ fontSize:13, color:'hsl(var(--muted))', marginTop:2 }}>{d.role}</div>
-              <div style={{ margin:'18px auto', width:118, height:118, borderRadius:'50%', overflow:'hidden', border:'1px solid hsl(var(--border))' }}>
+              <div style={{ margin:'14px auto 18px', width:118, height:118, borderRadius:'50%', overflow:'hidden', border:'1px solid hsl(var(--border))' }}>
                 <img src={d.img} alt={d.name} style={{ width:'100%', height:'100%', objectFit:'cover' }} />
               </div>
               <div style={{ marginTop:'auto', display:'flex', justifyContent:'space-between', alignItems:'flex-end', gap:8 }}>
                 <div>
-                  <div style={{ fontSize:12, color:'hsl(var(--muted))' }}>Head of Department</div>
+                  <div style={{ fontSize:12, color:'hsl(var(--muted))' }}>{d.role}</div>
                   <div style={{ fontSize:13, fontWeight:600, marginTop:4 }}>{d.rating} <span style={{ color:'hsl(var(--primary))' }}>★★★★★</span></div>
                 </div>
                 <span style={{ width:34, height:34, borderRadius:'50%', border:'1px solid hsl(var(--border))', display:'flex', alignItems:'center', justifyContent:'center', color:'hsl(var(--foreground))' }}>↗</span>
@@ -123,18 +123,29 @@ export default function Team({
               <p style={{ fontSize:14.5, lineHeight:1.6, color:'hsl(var(--muted))', margin:'0 0 20px', whiteSpace:'pre-line' }}>{selected.description}</p>
             )}
 
-            {selected.practoUrl ? (
-              <a
-                href={selected.practoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display:'inline-flex', alignItems:'center', gap:8, fontSize:14, fontWeight:700, color:'hsl(var(--primary-foreground))', background:'hsl(var(--primary))', padding:'12px 20px', borderRadius:999, textDecoration:'none', boxShadow:'0 12px 26px -10px hsl(var(--primary) / 0.7)' }}
-              >
-                View Practo profile <span aria-hidden>↗</span>
-              </a>
-            ) : (
-              <span style={{ display:'inline-block', fontSize:13, color:'hsl(var(--muted))', fontStyle:'italic', padding:'12px 0' }}>Practo profile coming soon</span>
-            )}
+            <div style={{ display:'flex', flexWrap:'wrap', gap:10, alignItems:'center' }}>
+              {selected.slug && (
+                <Link
+                  href={`/doctors/${selected.slug}`}
+                  onClick={() => setSelected(null)}
+                  style={{ display:'inline-flex', alignItems:'center', gap:8, fontSize:14, fontWeight:700, color:'hsl(var(--primary-foreground))', background:'hsl(var(--primary))', padding:'12px 20px', borderRadius:999, textDecoration:'none', boxShadow:'0 12px 26px -10px hsl(var(--primary) / 0.7)' }}
+                >
+                  Read more <span aria-hidden>→</span>
+                </Link>
+              )}
+              {selected.practoUrl ? (
+                <a
+                  href={selected.practoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display:'inline-flex', alignItems:'center', gap:8, fontSize:14, fontWeight:600, color:'hsl(var(--foreground))', background:'hsl(var(--surface))', border:'1px solid hsl(var(--border))', padding:'11px 18px', borderRadius:999, textDecoration:'none' }}
+                >
+                  Practo <span aria-hidden>↗</span>
+                </a>
+              ) : (
+                !selected.slug && <span style={{ fontSize:13, color:'hsl(var(--muted))', fontStyle:'italic' }}>Practo profile coming soon</span>
+              )}
+            </div>
           </div>
         </div>,
         document.body

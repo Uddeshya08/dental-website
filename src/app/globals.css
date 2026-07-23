@@ -156,3 +156,162 @@ img { max-width: 100%; height: auto; }
 
 /* Prevent horizontal overflow from decorative blur circles */
 body > div[aria-hidden] { max-width: 100vw; }
+
+/* ========================================================
+   EXTRA MOBILE POLISH
+   ======================================================== */
+@media (max-width: 640px) {
+  /* Hero — video first, text second */
+  section[data-hero] {
+    padding: 20px 16px 24px !important;
+    gap: 22px !important;
+  }
+  section[data-hero] [data-hero-visual] { order: 1; }
+  section[data-hero] [data-hero-text]   { order: 2; }
+  section[data-hero] [data-hero-visual] > div:first-child { aspect-ratio: 16/11 !important; border-radius: 20px !important; }
+
+  /* Hero decorative rating badge — reposition inside on mobile */
+  section[data-hero] [data-hero-visual] > div:last-child {
+    bottom: 10px !important;
+    left: 10px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* Hero heading + body */
+  section[data-hero] h1 { font-size: clamp(28px, 8.5vw, 38px) !important; margin-top: 14px !important; }
+  section[data-hero] p  { font-size: 14.5px !important; margin-top: 14px !important; }
+
+  /* Hero CTAs stack, full-width feel */
+  section[data-hero] [data-hero-text] > div[style*="flex-wrap:wrap"] {
+    gap: 10px !important; margin-top: 22px !important;
+  }
+  section[data-hero] a[href="/book"],
+  section[data-hero] a[href="/services"] {
+    padding: 13px 20px !important; font-size: 14.5px !important;
+  }
+
+  /* Hero stats — tighter */
+  section[data-hero] [data-hero-text] > div:last-child { gap: 18px !important; margin-top: 24px !important; }
+  section[data-hero] [data-hero-text] > div:last-child > div > div:first-child { font-size: 24px !important; }
+
+  /* Trust bar chips wrap tighter */
+  main section[data-reveal][style*="max-width:1180px"] > div[style*="justify-content:space-between"] {
+    padding: 12px 14px !important; gap: 10px 16px !important;
+  }
+
+  /* About numbered on primary bg — reduce padding, stack cells */
+  main section[style*="hsl(var(--primary) / 0.78)"] { padding: 56px 20px !important; }
+  main section[style*="hsl(var(--primary) / 0.78)"] div[style*="grid-template-columns:.5fr"] {
+    grid-template-columns: 1fr !important; gap: 16px !important;
+  }
+  main section[style*="hsl(var(--primary) / 0.78)"] h2 { font-size: clamp(26px, 7vw, 34px) !important; }
+  main section[style*="hsl(var(--primary) / 0.78)"] div[style*="padding:34px 26px"] {
+    padding: 22px 18px !important; border-left: 0 !important; border-top: 1px solid hsl(var(--primary-foreground) / 0.16) !important;
+  }
+
+  /* Journey (ink bg) tighten */
+  main section[style*="hsl(var(--ink))"] { padding: 56px 20px !important; }
+  main section[style*="hsl(var(--ink))"] h2 { font-size: clamp(24px, 7vw, 32px) !important; }
+  main section[style*="hsl(var(--ink))"] div[style*="grid-template-columns:1.3fr"] {
+    grid-template-columns: 1fr !important; gap: 14px !important;
+  }
+  main section[style*="hsl(var(--ink))"] div[style*="grid-template-columns:repeat(4"] {
+    grid-template-columns: 1fr !important; gap: 26px !important; margin-top: 40px !important;
+  }
+
+  /* Before/after slider — smaller heading */
+  main section[data-reveal] div[style*="text-align:center"] h2[style*="font-size:42px"] { font-size: clamp(24px, 7vw, 32px) !important; }
+
+  /* Team card padding */
+  main section[data-reveal] div[style*="borderRadius:28px"][style*="padding:26px"],
+  main section[data-reveal] div[style*="border-radius:28px"][style*="padding:26px"] {
+    padding: 16px !important;
+  }
+  main button[style*="borderRadius:20px"][style*="padding:22px"],
+  main button[style*="border-radius:20px"][style*="padding:22px"] {
+    padding: 16px !important;
+  }
+  /* Team single-tab: hide arrow buttons on mobile */
+  main section[data-reveal] div[style*="border-radius:28px"] > div[style*="justify-content:space-between"] > div:last-child { display: none !important; }
+
+  /* Testimonials cards single col already; reduce padding */
+  main section[data-reveal] div[style*="padding:28px"][style*="var(--surface) / 0.62"] { padding: 20px !important; }
+
+  /* Hours cutout marquee smaller */
+  main section[data-reveal] div[style*="border-radius:30px"][style*="height:clamp(440px"] { border-radius: 22px !important; }
+  main section[data-reveal] div[style*="border-radius:30px"] span[style*="clamp(76px,13vw,176px)"] { font-size: clamp(48px, 15vw, 96px) !important; }
+
+  /* CTA gradient band */
+  main section[data-reveal] div[style*="linear-gradient(135deg, hsl(var(--primary)"] { padding: 32px 20px !important; border-radius: 22px !important; }
+  main section[data-reveal] div[style*="linear-gradient(135deg, hsl(var(--primary)"] h2 { font-size: clamp(22px, 6.5vw, 30px) !important; }
+  main section[data-reveal] div[style*="linear-gradient(135deg, hsl(var(--primary)"] p { font-size: 14.5px !important; }
+
+  /* Booking flow: tighten card + step buttons */
+  main section[style*="max-width:760px"] div[style*="padding:30px"][style*="border-radius:26px"] { padding: 18px !important; border-radius: 18px !important; }
+  main section[style*="max-width:760px"] div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  main section[style*="max-width:760px"] div[style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Blog featured stacks image over text */
+  main section[data-reveal] div[style*="grid-template-columns:1.1fr .9fr"][style*="border-radius:26px"] { grid-template-columns: 1fr !important; }
+  main section[data-reveal] div[style*="grid-template-columns:1.1fr .9fr"][style*="border-radius:26px"] > div:last-child { padding: 22px !important; }
+
+  /* About page hero image aspect */
+  main div[style*="max-width:1180px"] div[style*="aspect-ratio:4/5"] { aspect-ratio: 4/4 !important; }
+}
+
+/* Ultra-narrow (<380px) — belt + suspenders */
+@media (max-width: 380px) {
+  main h1 { font-size: 26px !important; }
+  main h2 { font-size: 22px !important; }
+  section[data-hero] [data-hero-text] > div[style*="flex-wrap:wrap"] a { flex: 1 1 100% !important; text-align: center; }
+}
+
+/* ========================================================
+   DOCTOR DETAIL PAGE
+   ======================================================== */
+@media (max-width: 900px) {
+  main section[data-reveal] div[style*="grid-template-columns:.9fr 1.1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Hero grid stack */
+  main section[data-reveal] div[style*="grid-template-columns:.9fr 1.1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+  /* Doctor photo — cap max height, wider aspect */
+  main section[data-reveal] div[style*="grid-template-columns:.9fr 1.1fr"] > div:first-child {
+    aspect-ratio: 4/4 !important;
+    max-height: 380px;
+    max-width: 320px;
+    margin: 0 auto;
+    border-radius: 20px !important;
+  }
+  /* Hero paddings + h1 size */
+  main section[data-reveal][style*="padding:48px 24px 24px"] { padding: 24px 18px 12px !important; }
+  main section[data-reveal] h1[style*="font-size:50px"] { font-size: clamp(28px, 8vw, 38px) !important; }
+
+  /* Qualifications list font */
+  main section[data-reveal] ul[style*="flex-direction:column"] li { font-size: 13.5px !important; }
+
+  /* Bio paragraphs */
+  main section[data-reveal][style*="max-width:900px"] { padding: 32px 18px 0 !important; }
+  main section[data-reveal][style*="max-width:900px"] h2 { font-size: clamp(22px, 6.5vw, 28px) !important; }
+  main section[data-reveal][style*="max-width:900px"] p { font-size: 14.5px !important; line-height: 1.7 !important; }
+
+  /* Specialties + Reviews: 3 col → 1 col already handled by generic rule;
+     tighten padding + heading */
+  main section[data-reveal][style*="padding:72px 24px 0"] { padding: 48px 18px 0 !important; }
+  main section[data-reveal][style*="padding:72px 24px 0"] h2 { font-size: clamp(24px, 7vw, 30px) !important; }
+  main section[data-reveal][style*="padding:72px 24px 0"] div[style*="padding:26px"],
+  main section[data-reveal][style*="padding:72px 24px 0"] div[style*="padding:28px"] {
+    padding: 20px !important;
+  }
+
+  /* CTA buttons on hero — stack */
+  main section[data-reveal] div[style*="grid-template-columns:.9fr 1.1fr"] div[style*="flex-wrap:wrap"] { gap: 10px !important; }
+  main section[data-reveal] div[style*="grid-template-columns:.9fr 1.1fr"] div[style*="flex-wrap:wrap"] > a { flex: 1 1 100% !important; text-align: center; }
+}

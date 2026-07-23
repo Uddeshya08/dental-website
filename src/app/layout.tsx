@@ -8,7 +8,16 @@ import Reveal from '@/components/Reveal';
 export const metadata: Metadata = {
   title: 'Dentheal — Modern Dental Clinic',
   description: 'Modern care, gentle hands, and a team that explains everything.',
-  openGraph: { title: 'Dentheal', description: 'Dentistry that feels calm, clear & genuinely kind.' }
+  icons: {
+    icon: '/dentheal-logo.jpeg',
+    shortcut: '/dentheal-logo.jpeg',
+    apple: '/dentheal-logo.jpeg'
+  },
+  openGraph: {
+    title: 'Dentheal',
+    description: 'Dentistry that feels calm, clear & genuinely kind.',
+    images: ['/dentheal-logo.jpeg']
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

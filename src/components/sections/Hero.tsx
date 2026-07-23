@@ -27,8 +27,8 @@ export default function Hero({
   stats = HERO_STATS
 }: Props) {
   return (
-    <section data-reveal style={{ maxWidth:1180, margin:'0 auto', padding:'56px 24px 40px', display:'grid', gridTemplateColumns:'1.05fr .95fr', gap:48, alignItems:'center' }}>
-      <div>
+    <section data-reveal data-hero style={{ maxWidth:1180, margin:'0 auto', padding:'56px 24px 40px', display:'grid', gridTemplateColumns:'1.05fr .95fr', gap:48, alignItems:'center' }}>
+      <div data-hero-text>
         <span style={{ display:'inline-flex', alignItems:'center', gap:8, fontSize:13, fontWeight:600, color:'hsl(var(--primary))', background:'hsl(var(--primary) / 0.1)', padding:'7px 14px', borderRadius:999, border:'1px solid hsl(var(--primary) / 0.2)' }}>
           <span style={{ width:7, height:7, borderRadius:'50%', background:'hsl(var(--success))' }} />{eyebrow}
         </span>
@@ -49,7 +49,7 @@ export default function Hero({
           ))}
         </div>
       </div>
-      <div style={{ position:'relative' }}>
+      <div data-hero-visual style={{ position:'relative' }}>
         <div style={{ position:'relative', borderRadius:28, overflow:'hidden', aspectRatio:'4/5', border:'1px solid hsl(var(--border) / 0.7)', boxShadow:'0 30px 70px -30px hsl(var(--primary) / 0.4)' }}>
           {videoSrc ? (
             <video
